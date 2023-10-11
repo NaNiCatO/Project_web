@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="/css/register.css">
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
-        <form action="/process_login" method="post">
+        <h2>Register</h2>
+        <form action="your_server_side_registration_script.php" method="post">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -16,9 +20,8 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <input type="submit" value="Login">
+            <input type="submit" value="Register">
         </form>
-        <p>Don't have an account? <input type="button" value="Register" onclick="location.href='register.html';"></p>
     </div>
 </body>
 </html>

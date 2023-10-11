@@ -24,6 +24,12 @@ app.post('/process_login', (req, res) => {
     }
 });
 
+app.get('/join_meeting', (req, res) => {
+    // Perform any necessary server-side logic here
+    res.sendFile(path.join(__dirname, 'page', 'meeting.html'))
+});
+
+
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });

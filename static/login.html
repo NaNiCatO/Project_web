@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="/process_login" method="post">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <input type="submit" value="Login">
+        </form>
+        <p>Don't have an account? <input type="button" value="Register" onclick="location.href='register.html';"></p>
+    </div>
+</body>
+</html>

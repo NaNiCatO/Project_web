@@ -1,0 +1,30 @@
+.meeting-block {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.meeting-picture {
+    max-width: 20%;
+    height: auto;
+}
+
+.meeting-description {
+    margin-top: 10px;
+}
+
+.meeting-people {
+    margin-top: 10px;
+}
+
+.join-button {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}

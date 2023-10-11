@@ -5,11 +5,11 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, 'static')));
+app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'static', 'login.html'));
+    res.sendFile(path.join(__dirname, 'page', 'login.html'));
 });
 
 app.post('/process_login', (req, res) => {
@@ -18,7 +18,7 @@ app.post('/process_login', (req, res) => {
     // Here, you can perform authentication and other logic.
     // Replace this with your actual authentication code.
     if (username === 'name' && password === 'pass') {
-        res.sendFile(path.join(__dirname, 'static', 'channel.html'));
+        res.sendFile(path.join(__dirname, 'page', 'channel.html'));
     } else {
         res.status(401).json({ message: 'Login failed' });
     }

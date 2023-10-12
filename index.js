@@ -1,16 +1,24 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const http = require('http');
+const socketIo = require('socket.io');
+
 
 const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
 const port = process.env.PORT || 8000;
+
 
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'page', 'login.html'));
 });
+
 
 app.post('/process_login', (req, res) => {
     const { username, password } = req.body;
@@ -24,9 +32,20 @@ app.post('/process_login', (req, res) => {
     }
 });
 
+
 app.get('/join_meeting', (req, res) => {
-    // Perform any necessary server-side logic here
-    res.sendFile(path.join(__dirname, 'page', 'meeting.html'))
+    res.sendFile(path.join(__dirname, 'page', 'meeting.html'));
+});
+
+
+io.on('connection', (socket) => {
+    console.log('A user has connected');
+
+    // Handle WebRTC signaling and user interaction here
+
+    socket.on('disconnect', () => {
+        // Handle user disconnection
+    });
 });
 
 

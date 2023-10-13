@@ -60,7 +60,7 @@ async def process_login(username: str = Form(...), password: str = Form(...)):
         with open(user_data_file, "r") as file:
             user_data = json.load(file)
         if password == user_data["password"]:
-            return FileResponse("page/meeting.html")
+            return FileResponse("page/channel.html")
         else:
             raise HTTPException(status_code=401, detail="Login failed")
 
@@ -106,26 +106,8 @@ async def get_all_data():
     return JSONResponse(content={"data": data})
 
 
-@app.post("/process_register")
-async def process_register(email: str = Form(...), username: str = Form(...), password: str = Form(...)):
-
-    user_data = {
-        "email": email,
-        "username": username,
-        "password": password
-    }
-
-    # Store user registration data in a JSON file
-    user_data_file = os.path.join(data_dir, f"{username}.json")
-    with open(user_data_file, "w") as file:
-        json.dump(user_data, file)
-
-    # Redirect to the login page after registration
-    return FileResponse("page/login.html")
-    
-
-
-@app.get("/meeting", response_class=HTMLResponse)
+#______________________meeting______________________
+@app.get("/join_meeting", response_class=HTMLResponse)
 async def get_meeting_page(request: Request):
     return FileResponse("page/meeting.html")
 

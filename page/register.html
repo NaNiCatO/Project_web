@@ -3,11 +3,12 @@
 <head>
     <title>Register</title>
     <link rel="stylesheet" type="text/css" href="/css/register.css">
+    <script src="/js/register.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>Register</h2>
-        <form action="your_server_side_registration_script.php" method="post">
+        <form action="/process_register" method="post">
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -20,8 +21,9 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <input type="submit" value="Register">
+            <input type="submit" id="registerButton" value="Register">
         </form>
+        <p>Already have an account? <a href="/login">Login</a></p>
     </div>
 </body>
 </html>

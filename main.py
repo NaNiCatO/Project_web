@@ -12,8 +12,6 @@ app.mount("/js", StaticFiles(directory="js"), name="static_js")
 
 
 
-
-
 #______________________home______________________
 @app.get("/", response_class=HTMLResponse)
 @app.get("/login", response_class=HTMLResponse)
@@ -64,7 +62,7 @@ async def process_register(email: str = Form(...), username: str = Form(...), pa
     return FileResponse("page/login.html")
     
 
-
+#______________________meeting______________________
 @app.get("/meeting", response_class=HTMLResponse)
 async def get_meeting_page(request: Request):
     return FileResponse("page/meeting.html")

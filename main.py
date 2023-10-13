@@ -14,13 +14,22 @@ app.mount("/js", StaticFiles(directory="js"), name="static_js")
 
 #______________________home______________________
 @app.get("/", response_class=HTMLResponse)
+async def get_login_page(request: Request):
+    return FileResponse("page/index.html")
+
+
+#______________________program______________________
+@app.get("/program", response_class=HTMLResponse)
+async def get_login_page(request: Request):
+    return FileResponse("page/program_choice.html")
+
+
+#______________________login______________________
 @app.get("/login", response_class=HTMLResponse)
 async def get_login_page(request: Request):
     return FileResponse("page/login.html")
 
 
-
-#______________________login______________________
 @app.post("/process_login")
 async def process_login(username: str = Form(...), password: str = Form(...)):
     # Check if the username and password are correct

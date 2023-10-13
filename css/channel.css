@@ -28,3 +28,18 @@
     padding: 10px 20px;
     cursor: pointer;
 }
+<<<<<<< Updated upstream
+=======
+
+.localVideo{
+    background-color:aquamarine
+}
+
+.create-button {
+    position: fixed;
+    bottom: 20px; /* Adjust this value as needed */
+    right: 20px; /* Adjust this value as needed */
+    z-index: 999; /* Ensures it's displayed above other content */
+    /* Add any other styling you want for the button here */
+}
+>>>>>>> Stashed changes

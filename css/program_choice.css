@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* Example: Scaling an image to 50% of its original size */
+img {
+    width: 100vw; /* 100% of viewport width */
+    height: 100vh; /* 100% of viewport height */
+    object-fit: cover; /* Maintain aspect ratio and cover entire space */
+    object-position: center center; /* Center the image */
+}
+
+
+
+li{
+    list-style-type: none;
+
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* Style for the navbar-menu */
+.navbar-menu {
+    /* background-color: #333; */
+    /* padding: 10px 0; */
+    text-align: center;
+}
+
+.navbar-menu a {
+    color: black; /* Set the default link color to black */
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s; /* Add a smooth color transition */
+}
+
+.navbar-menu a:hover {
+    text-decoration: underline;
+    color: #ff9900; /* Change link color on hover */
+}
+
+.SE_Head {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s; /* Add a smooth color transition */
+}
+
+
+/* Media query for responsive design */
+@media screen and (max-width: 768px) {
+    /* Adjust the styling for smaller screens */
+    .navbar-menu {
+        padding: 10px 0;
+    }
+
+    .navbar-menu a {
+        font-size: 16px; /* Reduce font size for smaller screens */
+        margin: 0 10px; /* Decrease margin between links */
+    }
+}
+
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    scroll-behavior: smooth;
+    /* scroll-padding:var(--scroll-padding); */
+
+}
+
+.menu{
+    display: flex;
+    width: 100%;
+    padding-left: 0px;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    text-decoration: none;
+
+}
+
+
+
+
+
+
+.img-content{
+    width: 1024;
+    height: 100%;
+}
+
+.Head{
+     position: fixed;
+
+}
+
+.Program_Bar {
+    display: flex;
+    padding: 20px;
+
+}
+
+.Program_Bar_Position {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 170px; 
+
+
+    
+}
+
+.Program_Bar_Detail{
+
+    padding: 0px 100px 0px 0px;
+    text-align: center;
+    color: black;
+}
+
+
+.fixed{
+    position: fixed;
+
+}
+
+.SE2022 {
+        background-image: url('https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.6435-9/75625360_2708828382511763_3205029120262012928_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeGBbnT32hRjJjCmiFxpCba4OBRkihhNDX44FGSKGE0NfgUDkYfKBX1FGlhkhMI2bz0KPd16kboR0yNkQt_MwfQV&_nc_ohc=q-bFUWxiMhgAX-i6qMM&_nc_ht=scontent.fbkk5-4.fna&oh=00_AfCJd7ajbbySiVnTUr4IJ0BHQVQmmuKtR32HECbN9hu96w&oe=6545A398'); 
+        /* background-color: red; */
+        background-size: cover; /* Adjust as needed */
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 100%;
+        height: 100vh; 
+}
+
+.SE2022-content {
+        padding: 20px;
+        text-align: center;
+        color: white;
+}
+
+
+
+.Glasgow {
+    background-image: url('https://www.gla.ac.uk/media/Media_334526_smxx.jpg');
+    /* background-color: chocolate; */
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100vh; /* Adjust to make it cover the viewport height */
+}
+
+
+
+.Glasgow-content {
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+
+
+.Aboard {
+    width: 100%;
+    height: 100vh; 
+    background-image: url('https://www.charta-der-vielfalt.de/uploads/tx_dreipccdvdiversity/FRA-UAS_Logo_rgb.jpg');
+    background-color: rgb(168, 80, 80);
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat;
+    background-position: center center;
+
+
+}
+
+.Aboard-content {
+    /* padding: 20px; */
+    text-align: center;
+    color: rgb(131, 49, 49);
+}
+
+
+.Button-Position-Aboard{
+    
+    align-items: center;
+    padding-top: 700px ;
+    /* background-color: aliceblue; */
+}
+
+.Aboard-Button {
+    background-color: rgb(225, 223, 223);
+    border: 3px solid gray;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 480px;
+    border-radius: 12px;
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+
+}
+
+
+.Intern {
+    background-image: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/original_images/International_Intern_Day_hero.jpg');
+
+    background-color: rgb(214, 145, 42);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100vh; /* Adjust this value as needed */
+}
+
+/* .Intern {
+    background-color: rgb(214, 145, 42);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 100%;
+    height: 100vh; 
+} */
+
+.Intern-content {
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+
+.Intern-Button {
+    background-color: red;
+    border: 3px solid gray;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 480px;
+    border-radius: 12px;
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+
+}
+
+.Button-Position-Intern{
+    
+    align-items: center;
+    padding-top: 700px ;
+    /* background-color: aliceblue; */
+}
+.Button-Position{
+    
+    align-items: center;
+    padding-top: 400px ;
+}
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+ 
+  
+/* Add this CSS rule to set initial opacity to 0 */
+.SE2022-Button {
+    background-color: rgb(225, 223, 223);
+    border: 3px solid gray;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 480px;
+    border-radius: 12px;
+    opacity: 0; /* Initial opacity set to 0 */
+    /* transition: opacity 0.5s ease-in-out;  */
+    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+
+}
+
+
+
+.SE2020-Head-Content{
+    padding:120px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.Glasgow-Head-Content{
+    padding:120px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.Aboard-Head-Content{
+    padding:120px;
+    font-size: 50px;
+    font-weight: bold;
+}
+.Internal-Head-Content{
+    padding:120px;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+
+.Button-Position-Glasgow{
+    
+    align-items: center;
+    padding-top: 700px ;
+    /* background-color: aliceblue; */
+}
+
+
+.Glasgow-Button {
+    background-color: rgb(225, 223, 223);
+    border: 3px solid gray;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin: auto;
+    cursor: pointer;
+    width: 480px;
+    border-radius: 12px;
+    transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+
+}
+
+
+

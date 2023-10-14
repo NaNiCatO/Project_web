@@ -75,7 +75,7 @@ const defaultMenuContent = `
     <li><a href="#">ADMISSION</a></li>
     <li><a href="#Event-News">EVENT&NEWS</a></li>
     <li><a href="#">ABOUT</a></li>
-    <li><a href="#"><i class="ri-user-line"></i></a></li>
+    <li><a href="/login"><i class="ri-user-line"></i></a></li>
 `;
 
 // Function to update the menu content
@@ -87,7 +87,7 @@ function updateMenuContent() {
                 <li><a href="#">ADMISSION</a></li>
                 <li><a href="#Event-News">EVENT&NEWS</a></li>
                 <li><a href="#">ABOUT</a></li>
-                <li><a href="#">Login</a></li>
+                <li><a href="/login"><i class="ri-user-line"></i></a></li>
             `;
         } else {
             navList.innerHTML = defaultMenuContent;

@@ -8,6 +8,7 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
+templates = Jinja2Templates(directory="templates")
 app.mount("/css", StaticFiles(directory="css"), name="static_css")
 app.mount("/js", StaticFiles(directory="js"), name="static_js")
 
@@ -54,22 +55,32 @@ async def get_login_page(request: Request):
 
 
 @app.post("/process_login")
-async def process_login(username: str = Form(...), password: str = Form(...)):
+async def process_login(request: Request, username: str = Form(...), password: str = Form(...)):
+    # read all json file form forum folder
+    data_dir = "/data/forum"
+    forum_entries = []
+    for filename in os.listdir(data_dir):
+        forum_data_file = os.path.join(data_dir, filename)
+        with open(forum_data_file, "r") as file:
+            forum_entry = json.load(file)
+            forum_entries.append(forum_entry) 
+    
     # Check if the username and password are correct
     user_data_file = os.path.join(data_dir, f"{username}.json")
     if os.path.exists(user_data_file):
         with open(user_data_file, "r") as file:
             user_data = json.load(file)
         if password == user_data["password"]:
-            return FileResponse("page/channel.html")
+            # TemplateResponse
+            return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries})
         else:
             raise HTTPException(status_code=401, detail="Login failed")
 
 
 #______________________register______________________
-data_dir = "user_data"
-if not os.path.exists(data_dir):
-    os.makedirs(data_dir)
+user_data_dir = "/data/user"
+if not os.path.exists(user_data_dir):
+    os.makedirs(user_data_dir)
 
 
 @app.get("/register", response_class=HTMLResponse)
@@ -107,16 +118,18 @@ async def get_all_data():
     return JSONResponse(content={"data": data})
 
 
-#______________________create______________________
-templates = Jinja2Templates(directory="templates")
+#______________________create forum______________________
+forum_data_dir = "/data/forum"
+if not os.path.exists(forum_data_dir):
+    os.makedirs(forum_data_dir)
+
+
 forum_entries = []
 
 @app.get('/create_forum',response_class=HTMLResponse)
 async def submit(request: Request):
     return FileResponse("templates/create_forum.html")
 
-
-from fastapi import FastAPI, Request
 
 @app.post('/create')
 async def submit(request: Request):
@@ -126,14 +139,24 @@ async def submit(request: Request):
     content = data.get('content')
     
     forum_entry = {'type': type, 'topic': topic, 'content': content}
-    forum_entries.append(forum_entry)
+    # save to forum_data (json)
+    forum_data_file = os.path.join(forum_data_dir, f"{topic}.json")
+    with open(forum_data_file, "w") as file:
+        json.dump(forum_entry, file)
     
-    return templates.TemplateResponse("forum_entries.html", {"request": request, "entries": forum_entries})
+    return templates.TemplateResponse("forum_entries.html", {"request": request, "entry": forum_entry})
 
 
 @app.get('/channel')
 async def submit(request: Request):
-    return FileResponse("page/channel.html")
+    forum_entries = []
+    for filename in os.listdir(forum_data_dir):
+        forum_data_file = os.path.join(forum_data_dir, filename)
+        with open(forum_data_file, "r") as file:
+            forum_entry = json.load(file)
+            forum_entries.append(forum_entry)
+    
+    return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries})
 
 
 #______________________meeting______________________

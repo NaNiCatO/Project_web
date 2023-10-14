@@ -6,13 +6,11 @@
 <body>
     <h1>Forum Entries</h1>
     <ul>
-        {% for entry in entries %}
-            <li>
-                <strong>Type:</strong> {{ entry.type }}<br>
-                <strong>Topic:</strong> {{ entry.topic }}<br>
-                <strong>Content:</strong> {{ entry.content }}<br>
-            </li>
-        {% endfor %}
+        <li>
+            <strong>Type:</strong> {{ entry.type }}<br>
+            <strong>Topic:</strong> {{ entry.topic }}<br>
+            <strong>Content:</strong> {{ entry.content }}<br>
+        </li>
     </ul>
     <a href="/channel">Back to Form</a>
 </body>

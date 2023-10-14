@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Channel Entries</title>
+    <link rel="stylesheet" type="text/css" href="/css/channel.css">
+</head>
+<body>
+    {% for entry in entries %}
+        <div class="meeting-block">
+            <div class="meeting-type">
+                <p>{{ entry.type }}</p>
+            </div>
+            <div class="meeting-topic">
+                <h3>{{ entry.topic }}</h3>
+            </div>
+            <div class="meeting-description">
+                <p>{{ entry.content }}</p>
+            </div>
+            <button class="join-button" onclick="location.href='/join_meeting';">Join Meeting</button>
+        </div>
+    {% endfor %}
+    <button id="createButton" class="create-button" onclick="location.href='/create_forum';">Create</button>
+</body>
+</html>

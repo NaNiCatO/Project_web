@@ -1,22 +1,30 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
 .meeting-block {
+    width: 33%; /* 3 blocks in a row with margins */
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px;
-    max-width: 400px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
 
-.meeting-picture {
-    max-width: 20%;
-    height: auto;
+.meeting-topic {
+    max-width: 100%;
 }
 
 .meeting-description {
     margin-top: 10px;
+    max-width: 100%;
 }
 
-.meeting-people {
+.meeting-type {
     margin-top: 10px;
 }
 
@@ -35,4 +43,20 @@
     right: 20px; /* Adjust this value as needed */
     z-index: 999; /* Ensures it's displayed above other content */
     /* Add any other styling you want for the button here */
+}
+
+/* Media query for screens with a max-width of 600px */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .meeting-block {
+        max-width: 100%;
+    }
+
+    .create-button {
+        position: static;
+        margin-top: 20px;
+    }
 }

@@ -34,6 +34,42 @@ transaction.commit()
 
 connection.close()
 
+# check if the all_user file exist
+if not os.path.exists("user_data/all_user.json"):
+    with open("user_data/all_user.json", 'w') as file:
+        json.dump({}, file)
+
+# On server start load all user data from json to ZODB
+@app.on_event("startup")
+async def startup_event():
+    with open("user_data/all_user.json", 'r') as file:
+        all_user = json.load(file)
+        connection = db.open()
+        root.user_data = BTrees.OOBTree.BTree()
+        for user in all_user:
+            user_info = all_user[user]
+            root.user_data[user] = User(user_info['username'] , user_info['password'] , user_info['email'])
+        transaction.commit()
+        connection.close()
+
+# On server shutdown save all user data from ZODB to json
+@app.on_event("shutdown")
+async def shutdown_event():
+    with open("user_data/all_user.json", 'w') as file:
+        all_user = {}
+        connection = db.open()
+        for user in root.user_data:
+            user_info = root.user_data[user]
+            all_user[user] = {
+                "username": user_info.username,
+                "password": user_info.password,
+                "email": user_info.email
+            }
+        transaction.commit()
+        connection.close()
+        json.dump(all_user, file)
+
+
 #______________________home______________________
 @app.get("/", response_class=HTMLResponse)
 async def get_login_page(request: Request):
@@ -54,15 +90,24 @@ async def get_login_page(request: Request):
 
 @app.post("/process_login")
 async def process_login(username: str = Form(...), password: str = Form(...)):
-    # Check if the username and password are correct
-    user_data_file = os.path.join(data_dir, f"{username}.json")
-    if os.path.exists(user_data_file):
-        with open(user_data_file, "r") as file:
-            user_data = json.load(file)
-        if password == user_data["password"]:
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username and password == user_info.password:
             return FileResponse("page/channel.html")
         else:
             raise HTTPException(status_code=401, detail="Login failed")
+
+
+    # Check if the username and password are correct
+    # user_data_file = os.path.join(data_dir, f"{username}.json")
+    # if os.path.exists(user_data_file):
+    #     with open(user_data_file, "r") as file:
+    #         user_data = json.load(file)
+    #     if password == user_data["password"]:
+    #         return FileResponse("page/channel.html")
+    #     else:
+    #         raise HTTPException(status_code=401, detail="Login failed")
 
 
 #______________________register______________________

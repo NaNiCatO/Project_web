@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="/css/channel.css">
 </head>
 <body>
+    <div class="container">
     {% for entry in entries %}
         <div class="meeting-block">
             <div class="meeting-type">
@@ -19,6 +20,7 @@
             <button class="join-button" onclick="location.href='/join_meeting';">Join Meeting</button>
         </div>
     {% endfor %}
+    </div>
     <button id="createButton" class="create-button" onclick="location.href='/create_forum';">Create</button>
 </body>
 </html>

@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 import uvicorn
 import os
 import json
+from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
@@ -104,6 +105,35 @@ async def get_all_data():
             "email": user_info.email
         })
     return JSONResponse(content={"data": data})
+
+
+#______________________create______________________
+templates = Jinja2Templates(directory="templates")
+forum_entries = []
+
+@app.get('/create_forum',response_class=HTMLResponse)
+async def submit(request: Request):
+    return FileResponse("templates/create_forum.html")
+
+
+from fastapi import FastAPI, Request
+
+@app.post('/create')
+async def submit(request: Request):
+    data = await request.form()
+    type = data.get('type')
+    topic = data.get('topic')
+    content = data.get('content')
+    
+    forum_entry = {'type': type, 'topic': topic, 'content': content}
+    forum_entries.append(forum_entry)
+    
+    return templates.TemplateResponse("forum_entries.html", {"request": request, "entries": forum_entries})
+
+
+@app.get('/channel')
+async def submit(request: Request):
+    return FileResponse("page/channel.html")
 
 
 #______________________meeting______________________

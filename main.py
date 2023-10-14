@@ -37,14 +37,19 @@ transaction.commit()
 connection.close()
 
 # check if the all_user file exist
-if not os.path.exists("user_data/all_user.json"):
-    with open("user_data/all_user.json", 'w') as file:
+user_data_folder = "data/user"
+user_data_dir = r'C:\Users\User\Documents\GitHub\Project_web\data\user\all_user.json'
+if not os.path.exists(user_data_folder):
+    os.makedirs(user_data_folder)
+if not os.path.exists(user_data_dir):
+    with open(user_data_dir, 'w') as file:
         json.dump({}, file)
+        file.close()
 
 # On server start load all user data from json to ZODB
 @app.on_event("startup")
 async def startup_event():
-    with open("user_data/all_user.json", 'r') as file:
+    with open(user_data_dir, 'r') as file:
         all_user = json.load(file)
         connection = db.open()
         root.user_data = BTrees.OOBTree.BTree()
@@ -57,7 +62,7 @@ async def startup_event():
 # On server shutdown save all user data from ZODB to json
 @app.on_event("shutdown")
 async def shutdown_event():
-    with open("user_data/all_user.json", 'w') as file:
+    with open(user_data_dir, 'w') as file:
         all_user = {}
         connection = db.open()
         for user in root.user_data:
@@ -97,6 +102,7 @@ async def process_login(username: str = Form(...), password: str = Form(...)):
         user_info = user_data[user]
         if username == user_info.username and password == user_info.password:
             return FileResponse("page/channel.html")
+        
 async def process_login(request: Request, username: str = Form(...), password: str = Form(...)):
     # read all json file form forum folder
     data_dir = "/data/forum"
@@ -112,29 +118,8 @@ async def process_login(request: Request, username: str = Form(...), password: s
     for user in user_data:
         user_info = user_data[user]
         if username == user_info.username and password == user_info.password:
-            return FileResponse("page/channel.html")
-    
-    
-    user_data_file = os.path.join(data_dir, f"{username}.json")
-    if os.path.exists(user_data_file):
-        with open(user_data_file, "r") as file:
-            user_data = json.load(file)
-        if password == user_data["password"]:
-            # TemplateResponse
             return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries})
-        else:
-            raise HTTPException(status_code=401, detail="Login failed")
-
-
-    # Check if the username and password are correct
-    # user_data_file = os.path.join(data_dir, f"{username}.json")
-    # if os.path.exists(user_data_file):
-    #     with open(user_data_file, "r") as file:
-    #         user_data = json.load(file)
-    #     if password == user_data["password"]:
-    #         return FileResponse("page/channel.html")
-    #     else:
-    #         raise HTTPException(status_code=401, detail="Login failed")
+    raise HTTPException(status_code=401, detail="Login failed")
 
 
 #______________________register______________________

@@ -3,6 +3,11 @@
 <head>
     <title>Channel Entries</title>
     <link rel="stylesheet" type="text/css" href="/css/channel.css">
+    <script>
+        function CreateForum(username){
+            location.href = '/create_forum/' + username;
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -21,6 +26,6 @@
         </div>
     {% endfor %}
     </div>
-    <button id="createButton" class="create-button" onclick="location.href='/create_forum';">Create</button>
+    <button id="createButton" class="create-button" onclick="CreateForum('{{ username }}');">Create</button>
 </body>
 </html>

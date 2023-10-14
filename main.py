@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, Form, HTTPException
-from fastapi.responses import HTMLResponse, FileResponse, JSONResponse
+from fastapi.responses import HTMLResponse, FileResponse, JSONResponse ,RedirectResponse
 from fastapi.staticfiles import StaticFiles
 import uvicorn
 import os
@@ -29,12 +29,46 @@ class User():
         self.password = password
         self.email = email
 
-#Create admin user
-root.user_data = BTrees.OOBTree.BTree()
-root.user_data['admin'] = User('admin1' , 'admin2' , 'admin@gmail.com')
-transaction.commit()
+# check if the all_user file exist
+user_data_folder = "data/user"
+user_data_dir = "data/user/all_user.json"
+if not os.path.exists(user_data_folder):
+    os.makedirs(user_data_folder)
+if not os.path.exists(user_data_dir):
+    with open(user_data_dir, 'w') as file:
+        json.dump({}, file)
+        file.close()
 
-connection.close()
+# On server start load all user data from json to ZODB
+@app.on_event("startup")
+async def startup_event():
+    with open("data/user/all_user.json", 'r') as file:
+        all_user = json.load(file)
+        connection = db.open()
+        root.user_data = BTrees.OOBTree.BTree()
+        for user in all_user:
+            user_info = all_user[user]
+            root.user_data[user] = User(user_info['username'] , user_info['password'] , user_info['email'])
+        transaction.commit()
+        connection.close()
+
+# On server shutdown save all user data from ZODB to json
+@app.on_event("shutdown")
+async def shutdown_event():
+    with open("data/user/all_user.json", 'w') as file:
+        all_user = {}
+        connection = db.open()
+        for user in root.user_data:
+            user_info = root.user_data[user]
+            all_user[user] = {
+                "username": user_info.username,
+                "password": user_info.password,
+                "email": user_info.email
+            }
+        transaction.commit()
+        connection.close()
+        json.dump(all_user, file)
+
 
 #______________________home______________________
 @app.get("/", response_class=HTMLResponse)
@@ -53,32 +87,37 @@ async def get_login_page(request: Request):
 async def get_login_page(request: Request):
     return FileResponse("page/login.html")
 
+@app.get("/login/{username}/{password}")
+async def login(username: str , password: str):
+    # Check if the username and password are correct
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username and password == user_info.password:
+            return JSONResponse(content={"message": "Login successfully"})
+    return JSONResponse(content={"message": "Login failed"})
 
-@app.post("/process_login")
-async def process_login(request: Request, username: str = Form(...), password: str = Form(...)):
+@app.get("/process_login/{username}")
+async def process_login(request: Request, username: str):
     # read all json file form forum folder
-    data_dir = "/data/forum"
+    data_dir = "data/forum"
     forum_entries = []
     for filename in os.listdir(data_dir):
         forum_data_file = os.path.join(data_dir, filename)
         with open(forum_data_file, "r") as file:
             forum_entry = json.load(file)
             forum_entries.append(forum_entry) 
-    
-    # Check if the username and password are correct
-    user_data_file = os.path.join(data_dir, f"{username}.json")
-    if os.path.exists(user_data_file):
-        with open(user_data_file, "r") as file:
-            user_data = json.load(file)
-        if password == user_data["password"]:
-            # TemplateResponse
-            return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries})
-        else:
-            raise HTTPException(status_code=401, detail="Login failed")
 
+    # Check if the username and password are correct
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username:
+            return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries , "username" : username})
+    return RedirectResponse(url='/login')
 
 #______________________register______________________
-user_data_dir = "/data/user"
+user_data_dir = "data/user"
 if not os.path.exists(user_data_dir):
     os.makedirs(user_data_dir)
 
@@ -119,16 +158,23 @@ async def get_all_data():
 
 
 #______________________create forum______________________
-forum_data_dir = "/data/forum"
+forum_data_dir = "data/forum"
 if not os.path.exists(forum_data_dir):
     os.makedirs(forum_data_dir)
 
 
 forum_entries = []
 
-@app.get('/create_forum',response_class=HTMLResponse)
-async def submit(request: Request):
-    return FileResponse("templates/create_forum.html")
+@app.get('/create_forum/{username}',response_class=HTMLResponse)
+async def submit(request: Request,username: str):
+    #Check if the username exist or not
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username:
+            return FileResponse("templates/create_forum.html")
+    return RedirectResponse(url='/login')
+
 
 
 @app.post('/create')
@@ -157,6 +203,7 @@ async def submit(request: Request):
             forum_entries.append(forum_entry)
     
     return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries})
+
 
 
 #______________________meeting______________________

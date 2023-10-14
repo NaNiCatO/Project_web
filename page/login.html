@@ -3,11 +3,12 @@
 <head>
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <script src="/js/login.js"></script>
 </head>
 <body>
     <div class="container">
         <h2>Login</h2>
-        <form action="/process_login" method="post">
+        <form>
             <div class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" id="username" name="username" required>
@@ -16,7 +17,7 @@
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <input type="submit" value="Login">
+            <input type="submit" id="loginButton" value="Login" onclick="checkpassword()">
         </form>
         <p>Don't have an account? <a href="/register">Register</a></p>
     </div>

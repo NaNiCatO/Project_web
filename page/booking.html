@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/booking.css" />
+    <title>Co-Working Space Booking</title>
+  </head>
+  <body>
+
+
+
+    <!-- Zone 1: Co-Working Space Booking -->
+    <div class="CoSeat-container">
+      <label>Pick a Seat:</label>
+      <select id="CoSeat">
+        <option value="99">Co-Working Zone1</option>
+        <option value="98">Co-Working Zone2</option>
+
+      </select>
+    </div>
+
+    <ul class="showcase">
+      <li>
+        <div class="seat"></div>
+        <small>N/A</small>
+      </li>
+
+      <li>
+        <div class="seat selected"></div>
+        <small>Selected</small>
+      </li>
+
+      <li>
+        <div class="seat occupied"></div>
+        <small>Occupied</small>
+      </li>
+    </ul>
+
+    <!-- Zone 1: Seat Selection -->
+    <div class="fixed-container">
+      <div class="container">
+        <div class="row">
+          <div class="seat" value="1"></div>
+          <div class="seat" value="2"></div>
+          <div class="seat" value="3"></div>
+          <div class="seat" value="4"></div>
+          <div class="seat" value="5"></div>
+          <div class="seat" value="6"></div>
+          <div class="seat occupied"value="7"></div>
+          <div class="seat occupied" value="8"></div>
+        </div>
+
+        <div class="screen"></div>
+
+        <div class="row">
+          <div class="seat" value="9"></div>
+          <div class="seat" value="10"></div>
+          <div class="seat" value="11"></div>
+          <div class="seat" value="12"></div>
+          <div class="seat" value="13"></div>
+          <div class="seat" value="14"></div>
+          <div class="seat" value="15"></div>
+          <div class="seat" value="16"></div>
+        </div>
+      </div>
+    </div>
+
+
+    
+
+    <p class="text">
+      You have booked <span id="count">0</span> for Co-Working Space
+    </p>
+
+    <button id="confirm-button">Confirm Selection</button>
+
+    <script src="/js/booking.js"></script>
+  </body>
+</html>

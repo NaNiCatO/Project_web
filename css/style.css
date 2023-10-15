@@ -217,7 +217,7 @@ main-img img{
     padding-right: 1300px;
     bottom:6%;
     right:9%;
-    z-index: 999; /* Adjust this value as needed */
+    z-index: 999; 
     
 }
 
@@ -233,7 +233,7 @@ main-img img{
 }
 
 .ri-user-line{
-    font-size: 2em; /* Adjust the size as needed */
+    font-size: 2em; 
 
 }
   

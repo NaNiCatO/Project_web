@@ -2,10 +2,46 @@
 <html>
 <head>
     <title>Simple Forum</title>
+    <script>
+        function Create(username){
+            var topic = document.getElementById('topic').value;
+            var content = document.getElementById('content').value;
+            var type = document.getElementById('type').value
+            // Check if the topic and conetent is empty
+            if (topic == '' || content == ''){
+                alert('Please fill in the topic and content.');
+                return;
+            }
+            
+            
+            var data = {
+                type: type,
+                topic: topic,
+                content: content
+            };
+
+            fetch('/create/' + username, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Handle success, e.g., display a message or redirect
+                    alert('Data sent successfully');
+                } else {
+                    // Handle errors
+                    alert('An error occurred');
+                }
+            })
+        }
+    </script>
 </head>
 <body>
     <h1>Simple Forum</h1>
-    <form action="/create" method="post">
+    <form>
         <label for="type">Select Type:</label>
         <select name="type" id="type">
             <option value="daily_life">Daily Life</option>
@@ -20,7 +56,7 @@
         <label for="content">Content:</label>
         <textarea name="content" id="content" rows="4" cols="50" required></textarea>
         <br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Submit" onclick="Create('{{ username }}')">
     </form>
 </body>
 </html>

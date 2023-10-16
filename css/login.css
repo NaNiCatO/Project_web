@@ -12,10 +12,13 @@ body {
     background: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px 0 #ccc;
+    align-items: center;
+    text-align: center;
 }
 
 .form-group {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 label {
@@ -42,5 +45,6 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background: #555;
+
 }
 

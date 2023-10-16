@@ -1,19 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f4f4f4;
+    /* font-family: Arial, Helvetica, sans-serif; */
+    /* background-color: #f4f4f4; */
+    background-color: #171539;
+
 }
 
 .container {
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    background: #fff;
+    /* background: #fff; */
+    background-color: transparent;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 #ccc;
+    /* box-shadow: 0 0 5px 0 #ccc; */
+    align-items: center;
+    text-align: center;
+}
+
+
+form{
+    padding: 20px;
+
 }
 
 .form-group {
     margin-bottom: 20px;
+    text-align: left;
 }
 
 label {
@@ -26,9 +47,14 @@ input[type="password"] {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 25px;
+
 }
 
+.Head-text{
+    color: white;
+    /* font-size: 56px; */
+}
 input[type="submit"] {
     background: #333;
     color: #fff;
@@ -40,4 +66,20 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background: #555;
+
+}
+
+.text{
+    color: white;
+    margin-left: 5px;
+    padding: 10px;
+}
+
+
+.Add-Detail{
+    color:white
+}
+
+.text-Register{
+    color: tomato;
 }

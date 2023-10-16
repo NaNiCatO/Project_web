@@ -1,0 +1,48 @@
+*{
+    margin: 0;
+    padding: 0;
+    font: 'Poppins', sans-serif;
+}
+
+
+body{
+    background-color: #171539;
+    padding: 10px;
+
+
+}
+
+h1{
+    color: white;
+    padding:10px;
+}
+
+form{
+    background-color: white;
+    padding: 20px;
+    border: 1px solid tomato;
+    border-radius : 25px; ;
+}
+
+
+.Select-type{
+    font-size: 20px;
+}
+
+input,select{
+    border-radius: 25px;
+}
+
+
+textarea{
+    border-radius:10px ;
+}
+
+p{
+    padding-bottom: 5px;
+}
+
+
+input[type="submit"]:hover{
+    background-color: tomato;
+}

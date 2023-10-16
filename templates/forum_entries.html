@@ -1,17 +1,27 @@
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/css/forum_entries.css">
 <html>
 <head>
     <title>Forum Entries</title>
 </head>
 <body>
-    <h1>Forum Entries</h1>
-    <ul>
-        <li>
-            <strong>Type:</strong> {{ entry.type }}<br>
-            <strong>Topic:</strong> {{ entry.topic }}<br>
-            <strong>Content:</strong> {{ entry.content }}<br>
-        </li>
-    </ul>
-    <a href="/channel">Back to Form</a>
+    <div class="head">
+        <h1>Forum Entries</h1>
+
+    </div>
+    <div class="container">
+        <ul>
+            <li>
+                <strong>Type:</strong><p>{{ entry.type }}</p>
+                <strong>Topic:</strong> <p>{{ entry.topic }}</p>
+                <strong>Content:</strong> <p>{{ entry.content }}</p>
+            </li>
+        </ul>
+    </div>
+    <div class="back-position">
+        <!-- <button href="" class="back">Back to Form</button> -->
+        <button class="back" onclick="location.href='/channel';">Back to form</button>
+
+    </div>
 </body>
 </html>

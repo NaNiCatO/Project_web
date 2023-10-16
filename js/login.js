@@ -13,3 +13,18 @@ async function checkpassword(){
         alert("Either username or password is incorrect");
     }
 }
+
+
+function applyScrollReveal(selector, options) {
+    const sr = new ScrollReveal(options);
+    sr.reveal(selector);
+}
+
+// Usage
+applyScrollReveal('.container', {
+    distance: '65px',
+    duration: 2600,
+    delay: 100,
+    reset: true,
+    origin: 'top',
+});

@@ -300,14 +300,29 @@ async def submit(request: Request, username: str):
 
 @app.get('/channel')
 async def submit(request: Request):
-    forum_entries = []
-    for filename in os.listdir(forum_data_dir):
-        forum_data_file = os.path.join(forum_data_dir, filename)
-        with open(forum_data_file, "r") as file:
-            forum_entry = json.load(file)
-            forum_entries.append(forum_entry)
+    # forum_entries = []
+    # for filename in os.listdir(forum_data_dir):
+    #     forum_data_file = os.path.join(forum_data_dir, filename)
+    #     with open(forum_data_file, "r") as file:
+    #         forum_entry = json.load(file)
+    #         forum_entries.append(forum_entry)
+
+    #get all forum data
+    connection1 = db1.open()
+    forum_data = root1.forum_data
+    data = []
+    for forum in forum_data:
+        forum_info = forum_data[forum]
+        data.append({
+            "type": forum_info.type,
+            "topic": forum_info.topic,
+            "content": forum_info.content,
+            "like": forum_info.like,
+            "likeuser": forum_info.likeuser,
+            "comment": forum_info.comment
+        })
     
-    return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries})
+    return templates.TemplateResponse("channel.html", {"request": request, "entries": data})
 
 
 

@@ -3,12 +3,11 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
-/* Example: Scaling an image to 50% of its original size */
 img {
-    width: 100vw; /* 100% of viewport width */
-    height: 100vh; /* 100% of viewport height */
-    object-fit: cover; /* Maintain aspect ratio and cover entire space */
-    object-position: center center; /* Center the image */
+    width: 100vw; 
+    height: 100vh; 
+    object-fit: cover; 
+    object-position: center center; 
 }
 
 
@@ -23,7 +22,6 @@ a {
     color: black;
 }
 
-/* Style for the navbar-menu */
 .navbar-menu {
     /* background-color: #333; */
     /* padding: 10px 0; */
@@ -31,15 +29,15 @@ a {
 }
 
 .navbar-menu a {
-    color: black; /* Set the default link color to black */
+    color: black; 
     text-decoration: none;
     font-size: 18px;
-    transition: color 0.3s; /* Add a smooth color transition */
+    transition: color 0.3s; 
 }
 
 .navbar-menu a:hover {
     text-decoration: underline;
-    color: #ff9900; /* Change link color on hover */
+    color: #ff9900; 
 }
 
 .SE_Head {
@@ -58,8 +56,8 @@ a {
     }
 
     .navbar-menu a {
-        font-size: 16px; /* Reduce font size for smaller screens */
-        margin: 0 10px; /* Decrease margin between links */
+        font-size: 16px; 
+        margin: 0 10px; 
     }
 }
 
@@ -132,7 +130,7 @@ body, html {
 .SE2022 {
         background-image: url('https://scontent.fbkk5-4.fna.fbcdn.net/v/t1.6435-9/75625360_2708828382511763_3205029120262012928_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeGBbnT32hRjJjCmiFxpCba4OBRkihhNDX44FGSKGE0NfgUDkYfKBX1FGlhkhMI2bz0KPd16kboR0yNkQt_MwfQV&_nc_ohc=q-bFUWxiMhgAX-i6qMM&_nc_ht=scontent.fbkk5-4.fna&oh=00_AfCJd7ajbbySiVnTUr4IJ0BHQVQmmuKtR32HECbN9hu96w&oe=6545A398'); 
         /* background-color: red; */
-        background-size: cover; /* Adjust as needed */
+        background-size: cover; 
         background-repeat: no-repeat;
         background-position: center center;
         width: 100%;
@@ -150,11 +148,11 @@ body, html {
 .Glasgow {
     background-image: url('https://www.gla.ac.uk/media/Media_334526_smxx.jpg');
     /* background-color: chocolate; */
-    background-size: cover; /* Adjust as needed */
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
     width: 100%;
-    height: 100vh; /* Adjust to make it cover the viewport height */
+    height: 100vh; 
 }
 
 
@@ -172,7 +170,7 @@ body, html {
     height: 100vh; 
     background-image: url('https://www.charta-der-vielfalt.de/uploads/tx_dreipccdvdiversity/FRA-UAS_Logo_rgb.jpg');
     background-color: rgb(168, 80, 80);
-    background-size: cover; /* Adjust as needed */
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
 
@@ -197,10 +195,12 @@ body, html {
     background-color: rgb(225, 223, 223);
     border: 3px solid gray;
     color: black;
+    margin: 30px auto auto auto;  
+    /* margin-top:30px; */
     padding: 10px 20px;
     text-align: center;
     font-size: 16px;
-    margin: auto;
+    /* margin: auto; */
     cursor: pointer;
     width: 480px;
     border-radius: 12px;
@@ -218,7 +218,7 @@ body, html {
     background-repeat: no-repeat;
     background-position: center center;
     width: 100%;
-    height: 100vh; /* Adjust this value as needed */
+    height: 100vh; 
 }
 
 /* .Intern {
@@ -238,7 +238,7 @@ body, html {
 
 
 .Intern-Button {
-    background-color: red;
+    background-color: rgb(225, 223, 223);
     border: 3px solid gray;
     color: black;
     padding: 10px 20px;
@@ -249,7 +249,7 @@ body, html {
     width: 480px;
     border-radius: 12px;
     transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
-    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+    animation: fadeIn 0.5s ease-in-out; 
 
 }
 
@@ -275,7 +275,6 @@ body, html {
   
  
   
-/* Add this CSS rule to set initial opacity to 0 */
 .SE2022-Button {
     background-color: rgb(225, 223, 223);
     border: 3px solid gray;
@@ -287,9 +286,9 @@ body, html {
     cursor: pointer;
     width: 480px;
     border-radius: 12px;
-    opacity: 0; /* Initial opacity set to 0 */
+    opacity: 0; 
     /* transition: opacity 0.5s ease-in-out;  */
-    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+    animation: fadeIn 0.5s ease-in-out; 
 
 }
 
@@ -339,7 +338,7 @@ body, html {
     width: 480px;
     border-radius: 12px;
     transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
-    animation: fadeIn 0.5s ease-in-out; /* Use the fadeIn animation */
+    animation: fadeIn 0.5s ease-in-out; 
 
 }
 

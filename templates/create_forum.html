@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="/css/create_forum.css">
+
 <html>
 <head>
     <title>Simple Forum</title>
@@ -67,8 +69,12 @@
 </head>
 <body>
     <h1>Simple Forum</h1>
-    <form>
-        <label for="type">Select Type:</label>
+
+    
+    <form action="/create" method="post">
+        <label for="type" class="Select-type">
+            <p>Select Type:</p>
+        </label>
         <select name="type" id="type">
             <option value="daily_life">Daily Life</option>
             <option value="study">Study</option>
@@ -76,10 +82,14 @@
             <option value="knowledge">Knowledge</option>
         </select>
         <br><br>
-        <label for="topic">Topic:</label>
+        <label for="topic">
+            <p>Topic:</p>
+        </label>
         <input type="text" name="topic" id="topic" required>
         <br><br>
-        <label for="content">Content:</label>
+        <label for="content">
+            <p>Content:</p>
+        </label>
         <textarea name="content" id="content" rows="4" cols="50" required></textarea>
         <br><br>
         <input type="submit" value="Submit" id="submit_form">

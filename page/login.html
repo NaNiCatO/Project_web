@@ -3,24 +3,34 @@
 <head>
     <title>Login Page</title>
     <link rel="stylesheet" type="text/css" href="/css/login.css">
-    <script src="/js/login.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
+        <h1 class = "Head-text">Login</h1>
         <form>
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" required>
+                <label for="username" class="text">Username:</label>
+                <input class="box-decoration" type="text" id="username" name="username" 
+                required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" required>
+                <label for="password" class="text">Password:</label>
+                <input class="box-decoration" type="password" id="password" name="password" required>
             </div>
             <input type="submit" id="loginButton" value="Login"> 
             <!-- onclick="checkpassword(e)" -->
         </form>
-        <p>Don't have an account? <a href="/register">Register</a></p>
+            <div class="Add-Detail">
+                <p>Don't have an account? <a href="/register" class="text-Register">Register</a></p>
+
+            </div>
     </div>
+
+    <script src="/js/login.js"></script>
+
 </body>
 </html>

@@ -1,1 +1,1 @@
-{"admin1": {"username": "admin1", "password": "admin2", "email": "admin@gmail.com"}}
+{"admin1": {"username": "admin1", "password": "admin2", "email": "admin@gmail.com"}, "new": {"username": "new", "password": "newy", "email": "new1@gmail.com"}, "newy": {"username": "newy", "password": "newy", "email": "new@gmail.com"}}

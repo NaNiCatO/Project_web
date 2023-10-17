@@ -175,23 +175,15 @@ async def get_login_page(request: Request):
 async def get_login_page(request: Request):
     return FileResponse("page/login.html")
 
-@app.get("/login/{username}/{password}")
+@app.get("/login_1/{username}/{password}")
 async def login(username: str , password: str):
     # Check if the username and password are correct
     user_data = root.user_data
     for user in user_data:
         user_info = user_data[user]
-        if username == user_info.username and password == user_info.password:
-            return JSONResponse(content={"message": "Login successfully"})
-    return JSONResponse(content={"message": "Login failed"})
-
-@app.get("/login")
-async def login(username: str , password: str):
-    user_data = root.user_data
-    for user in user_data:
-        user_info = user_data[user]
-        if username == user_info.username and password == user_info.password:
-            return JSONResponse(content={"message": "Login successfully"})
+        if username == user_info.username:
+            if password == user_info.password:
+                return JSONResponse(content={"message": "Login successfully"})
     return JSONResponse(content={"message": "Login failed"})
 
 
@@ -287,6 +279,13 @@ async def submit(request: Request, username: str):
             type = data['type']
             topic = data['topic']
             content = data['content']
+
+            #Check if the topic is already exist or not
+            forum_data = root1.forum_data
+            for forum in forum_data:
+                forum_info = forum_data[forum]
+                if topic == forum_info.topic:
+                    return JSONResponse(content={"message": "Topic is already taken"})
             
             # save to forum_data ZODB
             connection1 = db1.open()
@@ -295,8 +294,7 @@ async def submit(request: Request, username: str):
             connection1.close()
 
             return JSONResponse(content={"message": "Create forum successfully"})
-        else:
-            return RedirectResponse(url='/login')
+    return RedirectResponse(url='/login')
         
 @app.post("/check_topic/{topic}")
 async def check_topic(topic: str):
@@ -320,7 +318,6 @@ async def submit(request: Request):
     #         forum_entries.append(forum_entry)
 
     #get all forum data
-    connection1 = db1.open()
     forum_data = root1.forum_data
     data = []
     for forum in forum_data:

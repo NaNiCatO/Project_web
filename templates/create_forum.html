@@ -3,6 +3,16 @@
 <head>
     <title>Simple Forum</title>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sub = document.getElementById('submit_form');
+            sub.addEventListener('click', function(e) {
+                e.preventDefault();
+                var username = '{{ username }}';
+                console.log("start");
+                Create(username);
+            });
+        })
+
         function Create(username){
             var topic = document.getElementById('topic').value;
             var content = document.getElementById('content').value;
@@ -13,7 +23,6 @@
                 return;
             }
             
-            alert("start to send data");
             var forum_data = {
                 type: type,
                 topic: topic,
@@ -30,7 +39,15 @@
             .then(response => {
                 if (response.ok) {
                     response.json().then(data => {
-                    alert(data.message); // Display the message from the JSON response
+                        if (data['message'] == "Topic is already taken" ){
+                            alert(data['message']);
+                            return;
+                        }else if (data['message'] == "Create forum successfully"){
+                            alert(data['message']);
+                            window.location.href = "/process_login/" + username;
+                            return;
+                        }
+
                 });
                 } else {
                     // Handle errors
@@ -65,7 +82,7 @@
         <label for="content">Content:</label>
         <textarea name="content" id="content" rows="4" cols="50" required></textarea>
         <br><br>
-        <input type="submit" value="Submit" onclick="Create('{{ username }}')">
+        <input type="submit" value="Submit" id="submit_form">
     </form>
 </body>
 </html>

@@ -13,6 +13,7 @@ body {
   justify-content: center;
   height: 100vh;
   font-family: 'Lato', 'sans-serif';
+
 }
 
 .CoSeat-container {
@@ -31,7 +32,7 @@ body {
   appearance: none;
 }
 
-.container {
+.container,.container2,.container3,.container4 {
   perspective: 1000px;
   margin-bottom: 30px;
 }
@@ -113,4 +114,46 @@ p.text {
 
 p.text span {
   color: tomato;
+}
+
+
+.fixed-container{
+  display: flex;
+  background-color: #171539;
+  flex-direction: row;
+  /* display: block; */
+  align-items: center;
+  gap: 5rem;
+  position: relative;
+}
+
+.container{
+  
+} 
+
+.space{
+  display: flex;
+  flex-direction: column;
+}
+
+.button{
+  padding: 10px;
+  border-radius: 25px ;
+  border: 0px;
+  background-color: white;
+
+}
+
+
+.button:hover{
+  background-color: tomato;
+  padding: 12px;
+  border: 1px solid ;
+
+  color: white;
+  cursor: pointer;
+}
+
+p{
+  padding: 10px;
 }

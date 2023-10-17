@@ -6,7 +6,10 @@ const CoSeatSelect = document.getElementById('CoSeat');
 const confirmButton = document.getElementById('confirm-button');
 
 
-populateUI();
+const container2 = document.querySelector('.container2');
+const container3 = document.querySelector('.container3');
+const container4 = document.querySelector('.container4');
+
 
 function setCoSeatData(CoSeatIndex) {
   localStorage.setItem('selectedCoSeatIndex', CoSeatIndex);
@@ -52,14 +55,48 @@ CoSeatSelect.addEventListener('change', (e) => {
   updateSelectedCount();
 });
 
-// Seat click event
+
 container.addEventListener('click', (e) => {
   if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
     e.target.classList.toggle('selected');
+    console.log('Selected');
 
     updateSelectedCount();
   }
 });
+
+// Seat click event
+container2.addEventListener('click', (e) => {
+  if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+    e.target.classList.toggle('selected');
+    console.log('Selected');
+
+    updateSelectedCount();
+  }
+});
+
+
+
+container3.addEventListener('click', (e) => {
+  if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+    e.target.classList.toggle('selected');
+    console.log('Selected');
+
+    updateSelectedCount();
+  }
+});
+
+
+container4.addEventListener('click', (e) => {
+  if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
+    e.target.classList.toggle('selected');
+    console.log('Selected');
+
+    updateSelectedCount();
+  }
+});
+
+
 
 updateSelectedCount();
 
@@ -91,6 +128,7 @@ confirmButton.addEventListener('click', () => {
 
 
   // Clear local storage data when a new day starts (at midnight)
+
 // function clearLocalStorageOnNewDay() {
 //   const lastClearTime = localStorage.getItem('lastClearTime');
 //   if (!lastClearTime) {
@@ -109,3 +147,6 @@ confirmButton.addEventListener('click', () => {
 
 // // Run the clearLocalStorageOnNewDay function when the page loads
 // clearLocalStorageOnNewDay();
+
+
+

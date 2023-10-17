@@ -86,3 +86,26 @@ confirmButton.addEventListener('click', () => {
   
     count.innerText = selectedSeatsCount;
   }
+
+
+
+
+  // Clear local storage data when a new day starts (at midnight)
+// function clearLocalStorageOnNewDay() {
+//   const lastClearTime = localStorage.getItem('lastClearTime');
+//   if (!lastClearTime) {
+//     localStorage.setItem('lastClearTime', new Date().getTime());
+//   } else {
+//     const lastClearDate = new Date(parseInt(lastClearTime));
+//     const now = new Date();
+//     if (now - lastClearDate >= 24 * 60 * 60 * 1000) { // 24 hours
+//       // Clear data
+//       localStorage.clear();
+//       // Set the new last clear time
+//       localStorage.setItem('lastClearTime', now.getTime());
+//     }
+//   }
+// }
+
+// // Run the clearLocalStorageOnNewDay function when the page loads
+// clearLocalStorageOnNewDay();

@@ -185,6 +185,16 @@ async def login(username: str , password: str):
             return JSONResponse(content={"message": "Login successfully"})
     return JSONResponse(content={"message": "Login failed"})
 
+@app.get("/login")
+async def login(username: str , password: str):
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username and password == user_info.password:
+            return JSONResponse(content={"message": "Login successfully"})
+    return JSONResponse(content={"message": "Login failed"})
+
+
 @app.get("/process_login/{username}")
 async def process_login(request: Request, username: str):
     # read all json file form forum folder
@@ -277,14 +287,6 @@ async def submit(request: Request, username: str):
             type = data['type']
             topic = data['topic']
             content = data['content']
-
-
-            #Check if the topic is already exist or not
-            forum_data = root1.forum_data
-            for forum in forum_data:
-                forum_info = forum_data[forum]
-                if topic == forum_info.topic:
-                    return templates.TemplateResponse("create_forum.html", {"request": request,"username": username})
             
             # save to forum_data ZODB
             connection1 = db1.open()
@@ -292,9 +294,19 @@ async def submit(request: Request, username: str):
             transaction.commit()
             connection1.close()
 
-            return templates.TemplateResponse("forum_entries.html", {"request": request})
+            return JSONResponse(content={"message": "Create forum successfully"})
         else:
             return RedirectResponse(url='/login')
+        
+@app.post("/check_topic/{topic}")
+async def check_topic(topic: str):
+    #Check if the topic is already exist or not
+    forum_data = root1.forum_data
+    for forum in forum_data:
+        forum_info = forum_data[forum]
+        if topic == forum_info.topic:
+            return JSONResponse(content={"message": "Topic is already taken"})
+    return JSONResponse(content={"message": "Topic is available"})
 
 
 
@@ -322,7 +334,7 @@ async def submit(request: Request):
             "comment": forum_info.comment
         })
     
-    return templates.TemplateResponse("channel.html", {"request": request, "entries": data})
+    return templates.TemplateResponse("forum_entries.html", {"request": request, "entries": data})
 
 
 

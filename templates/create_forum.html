@@ -13,8 +13,8 @@
                 return;
             }
             
-            
-            var data = {
+            alert("start to send data");
+            var forum_data = {
                 type: type,
                 topic: topic,
                 content: content
@@ -25,18 +25,26 @@
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(forum_data)
             })
             .then(response => {
                 if (response.ok) {
-                    // Handle success, e.g., display a message or redirect
-                    alert('Data sent successfully');
-                    
+                    response.json().then(data => {
+                    alert(data.message); // Display the message from the JSON response
+                });
                 } else {
                     // Handle errors
                     alert('An error occurred');
                 }
+                return response.json();
             })
+            .then(data => {
+                alert(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            
         }
     </script>
 </head>

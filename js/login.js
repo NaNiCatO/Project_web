@@ -3,16 +3,15 @@ async function checkpassword(){
     var name = document.getElementById("username").value;
     var password = document.getElementById("password").value;
 
-    console.log('/login/' + name + '/' + password)
-
-    const response = await fetch('/login/' + name + '/' + password)
-    const data = await response.json()
+    
+    const response = fetch('/login/' + name + '/' + password)
+    const data = response.json()
+    alert(data['message']);
     if (data['message'] == "Login successfully") {
-        window.location.assign('/process_login/' + name);
-        alert("Login successfully");   
+        window.location.href = '/process_login/' + name; 
     } else if (data['message'] == "Login failed") {
         alert("Either username or password is incorrect");
-        window.location.assign('/login');
+        window.location.assign('/login');   
     }
 }
 

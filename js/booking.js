@@ -1,14 +1,76 @@
 const container = document.querySelector('.container');
-const seats = document.querySelectorAll('.row .seat:not(.occupied');
-const count = document.getElementById('count');
-const total = document.getElementById('total');
-const CoSeatSelect = document.getElementById('CoSeat');
-const confirmButton = document.getElementById('confirm-button');
-
-
 const container2 = document.querySelector('.container2');
 const container3 = document.querySelector('.container3');
 const container4 = document.querySelector('.container4');
+const RoomBarEL = document.getElementById('RoomBarEL');
+
+const count = document.getElementById('count');
+const CoSeatSelect = document.getElementById('CoSeat');
+const confirmButton = document.getElementById('confirm-button');
+const seats = document.querySelectorAll('.row .seat:not(.occupied)');
+
+
+showRoom(1);
+
+
+
+
+
+function showRoom(roomNumber) {
+  RoomBarEL.style.display = 'flex';
+
+
+  for (let i = 1; i <= 4; i++) {
+
+    const roomEl = document.getElementById('Room' + i);
+    console.log('roomEl =', roomNumber);
+    const containerEl = document.getElementById('container' + i);
+    if (i === roomNumber) {
+      roomEl.style.display = 'flex';
+      containerEl.style.display = 'flex';
+      console.log('if container =', i);
+
+    } else {
+      roomEl.style.display = 'flex';
+      containerEl.style.display = 'none';
+      // console.log('else container =', i);
+
+    }
+
+  }
+
+
+
+
+  updateSelectedCount();
+
+}
+
+
+
+
+
+confirmButton.addEventListener('click', () => {
+  // Mark selected seats as occupied
+  const selectedSeats = document.querySelectorAll('.row .seat.selected');
+  selectedSeats.forEach((seat) => {
+    seat.classList.remove('selected');
+    seat.classList.add('occupied');
+  });
+
+
+
+  const selectedSeatsCount = selectedSeats.length;
+
+  // Display a confirmation message using alert
+  alert("You have successfully booked the seat for " + selectedSeatsCount + " seats");
+  updateSelectedCount();
+
+});
+
+
+
+
 
 
 function setCoSeatData(CoSeatIndex) {
@@ -63,9 +125,9 @@ container.addEventListener('click', (e) => {
 
     updateSelectedCount();
   }
+  console.log('container');
 });
 
-// Seat click event
 container2.addEventListener('click', (e) => {
   if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
     e.target.classList.toggle('selected');
@@ -73,10 +135,10 @@ container2.addEventListener('click', (e) => {
 
     updateSelectedCount();
   }
+  console.log('container2');
 });
 
-
-
+// Seat click event
 container3.addEventListener('click', (e) => {
   if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
     e.target.classList.toggle('selected');
@@ -84,9 +146,10 @@ container3.addEventListener('click', (e) => {
 
     updateSelectedCount();
   }
+  console.log('container3');
 });
 
-
+// Seat click event
 container4.addEventListener('click', (e) => {
   if (e.target.classList.contains('seat') && !e.target.classList.contains('occupied')) {
     e.target.classList.toggle('selected');
@@ -94,6 +157,7 @@ container4.addEventListener('click', (e) => {
 
     updateSelectedCount();
   }
+  console.log('container4');
 });
 
 
@@ -101,52 +165,11 @@ container4.addEventListener('click', (e) => {
 updateSelectedCount();
 
 
-confirmButton.addEventListener('click', () => {
-    // Mark selected seats as occupied
-    const selectedSeats = document.querySelectorAll('.row .seat.selected');
-    selectedSeats.forEach((seat) => {
-      seat.classList.remove('selected');
-      seat.classList.add('occupied');
-    });
-  
-    const selectedSeatsCount = selectedSeats.length;
-  
-    // Display a confirmation message using alert
-    alert("You have successfully booked the seat for " + selectedSeatsCount + " seats");
-  
-    updateSelectedCount();
-  });
-  
   function updateSelectedCount() {
     const selectedSeats = document.querySelectorAll('.row .seat.selected');
     const selectedSeatsCount = selectedSeats.length;
   
     count.innerText = selectedSeatsCount;
   }
-
-
-
-
-  // Clear local storage data when a new day starts (at midnight)
-
-// function clearLocalStorageOnNewDay() {
-//   const lastClearTime = localStorage.getItem('lastClearTime');
-//   if (!lastClearTime) {
-//     localStorage.setItem('lastClearTime', new Date().getTime());
-//   } else {
-//     const lastClearDate = new Date(parseInt(lastClearTime));
-//     const now = new Date();
-//     if (now - lastClearDate >= 24 * 60 * 60 * 1000) { // 24 hours
-//       // Clear data
-//       localStorage.clear();
-//       // Set the new last clear time
-//       localStorage.setItem('lastClearTime', now.getTime());
-//     }
-//   }
-// }
-
-// // Run the clearLocalStorageOnNewDay function when the page loads
-// clearLocalStorageOnNewDay();
-
 
 

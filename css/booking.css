@@ -2,6 +2,8 @@
 
 * {
   box-sizing: border-box;
+  margin: auto;
+  padding: auto;
 }
 
 body {
@@ -35,8 +37,13 @@ body {
 .container,.container2,.container3,.container4 {
   perspective: 1000px;
   margin-bottom: 30px;
-}
 
+}
+.head{
+  padding-bottom: 20px;
+  margin-top: -50px;
+
+}
 .seat {
   background-color: #444451;
   height: 14px;
@@ -45,6 +52,8 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
+
+
 
 .seat.selected {
   background-color: orange;
@@ -73,7 +82,7 @@ body {
 }
 
 .showcase {
-  background-color: rgba(0, 0, 0, 0.1);
+  /* background-color: rgba(0, 0, 0, 0.1); */
   padding: 5px 10px;
   border-radius: 5px;
   color: #777;
@@ -157,3 +166,45 @@ p.text span {
 p{
   padding: 10px;
 }
+
+
+/* .bg{
+  background-color: red;
+} */
+
+.Room {
+  list-style: none;
+  display: flex;
+  margin-top: -100px;
+  padding: 30px 0px 0px 20px;
+  /* background-color: #fff; */
+
+}
+
+.small1 {
+  margin-top: -20px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+  background-color:rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.small1:hover {
+  color: orange; /* Change the color on hover as needed */
+}
+
+
+.Room li {
+  margin-top: -20px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+  background-color:rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+
+
+.Room li:hover {
+  color: orange; /* Change the color on hover as needed */
+}
+

@@ -1,81 +1,203 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE-edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/booking.css" />
-    <title>Co-Working Space Booking</title>
-  </head>
-  <body>
 
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE-edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/booking.css" />
+  <title>Co-Working Space Booking</title>
+</head>
 
+<body>
 
-    <!-- Zone 1: Co-Working Space Booking -->
-    <div class="CoSeat-container">
-      <label>Pick a Seat:</label>
-      <select id="CoSeat">
-        <option value="99">Co-Working Zone1</option>
-        <option value="98">Co-Working Zone2</option>
+  <div class="CoSeat-container">
+    <h2 id="CoSeat">Co-Working Space Reservation</h2>
+  </div>
 
-      </select>
-    </div>
+  <ul class="showcase">
+    <li>
+      <div class="seat"></div>
+      <small>N/A</small>
+    </li>
+    <li>
+      <div class="seat selected"></div>
+      <small>Selected</small>
+    </li>
+    <li>
+      <div class="seat occupied"></div>
+      <small>Occupied</small>
+    </li>
+  </ul>
 
-    <ul class="showcase">
-      <li>
-        <div class="seat"></div>
-        <small>N/A</small>
-      </li>
+<div class = "bg">
+  <ul class="Room" id="RoomBarEL">
+    
+      <div class="small1" id="Room1" onclick="showRoom(1);">Room1</div>
+      <div class="small1" id="Room2" onclick="showRoom(2);">Room2</div>
+      <div class="small1" id="Room3" onclick="showRoom(3);">Room3</div>
+      <div class="small1" id="Room4" onclick="showRoom(4);">Room4</div>
+  </ul>
+</div>
 
-      <li>
-        <div class="seat selected"></div>
-        <small>Selected</small>
-      </li>
+  
 
-      <li>
-        <div class="seat occupied"></div>
-        <small>Occupied</small>
-      </li>
-    </ul>
+  <!-- Zone 1: Seat Selection -->
+  <div class="fixed-container">
+    <div class="space">
 
-    <!-- Zone 1: Seat Selection -->
-    <div class="fixed-container">
-      <div class="container">
-        <div class="row">
-          <div class="seat" value="1"></div>
-          <div class="seat" value="2"></div>
-          <div class="seat" value="3"></div>
-          <div class="seat" value="4"></div>
-          <div class="seat" value="5"></div>
-          <div class="seat" value="6"></div>
-          <div class="seat occupied"value="7"></div>
-          <div class="seat occupied" value="8"></div>
-        </div>
+      <div class="container Room" id="container1">
+        <div class="container">
 
-        <div class="screen"></div>
-
-        <div class="row">
-          <div class="seat" value="9"></div>
-          <div class="seat" value="10"></div>
-          <div class="seat" value="11"></div>
-          <div class="seat" value="12"></div>
-          <div class="seat" value="13"></div>
-          <div class="seat" value="14"></div>
-          <div class="seat" value="15"></div>
-          <div class="seat" value="16"></div>
+        
+          <div class="head">
+            <h4>Co-Working Space Zone 1</h1>
+          </div>
+          <div class="row">
+            <div class="seat occupied" value="11"></div>
+            <div class="seat occupied" value="21"></div>
+            <div class="seat occupied" value="31"></div>
+            <div class="seat occupied" value="41"></div>
+            <div class="seat occupied" value="51"></div>
+            <div class="seat occupied" value="61"></div>
+            <div class="seat occupied" value="71"></div>
+            <div class="seat occupied" value="81"></div>
+          </div>
+  
+          <div class="screen"></div>
+  
+          <div class="row">
+            <div class="seat" value="91"></div>
+            <div class="seat" value="101"></div>
+            <div class="seat" value="111"></div>
+            <div class="seat" value="121"></div>
+            <div class="seat" value="131"></div>
+            <div class="seat" value="141"></div>
+            <div class="seat" value="151"></div>
+            <div class="seat" value="161"></div>
+          </div>
         </div>
       </div>
+
+      <!-- Zone 2: Seat Selection -->
+      <div class="container Room" id="container2">
+        <!-- Content for Room 2 -->
+        <div class="container2">
+
+        
+          <div class="head">
+            <h4>Co-Working Space Zone 2</h1>
+          </div>
+          <div class="row">
+            <div class="seat occupied" value="11"></div>
+            <div class="seat occupied" value="21"></div>
+            <div class="seat occupied" value="31"></div>
+            <div class="seat occupied" value="41"></div>
+            <div class="seat occupied" value="51"></div>
+            <div class="seat occupied" value="61"></div>
+            <div class="seat occupied" value="71"></div>
+            <div class="seat occupied" value="81"></div>
+          </div>
+  
+          <div class="screen"></div>
+  
+          <div class="row">
+            <div class="seat" value="91"></div>
+            <div class="seat" value="101"></div>
+            <div class="seat" value="111"></div>
+            <div class="seat" value="121"></div>
+            <div class="seat" value="131"></div>
+            <div class="seat" value="141"></div>
+            <div class="seat" value="151"></div>
+            <div class="seat" value="161"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zone 3: Seat Selection -->
+      <div class="container Room" id="container3">
+        <!-- Content for Room 3 -->
+        <div class="container3">
+
+        
+          <div class="head">
+            <h4>Co-Working Space Zone 3</h1>
+          </div>
+          <div class="row">
+            <div class="seat occupied" value="11"></div>
+            <div class="seat occupied" value="21"></div>
+            <div class="seat occupied" value="31"></div>
+            <div class="seat" value="41"></div>
+            <div class="seat occupied" value="51"></div>
+            <div class="seat occupied" value="61"></div>
+            <div class="seat" value="71"></div>
+            <div class="seat occupied" value="81"></div>
+          </div>
+  
+          <div class="screen"></div>
+  
+          <div class="row">
+            <div class="seat" value="1"></div>
+            <div class="seat" value="11"></div>
+            <div class="seat" value="1211"></div>
+            <div class="seat" value="1221"></div>
+            <div class="seat" value="1312"></div>
+            <div class="seat" value="1412"></div>
+            <div class="seat" value="1512"></div>
+            <div class="seat" value="1612"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zone 4: Seat Selection -->
+      <div class="container Room" id="container4">
+        <!-- Content for Room 4 -->
+        <div class="container4">
+
+        
+          <div class="head">
+            <h4>Co-Working Space Zone 4</h1>
+          </div>
+          <div class="row">
+            <div class="seat occupied" value="11"></div>
+            <div class="seat occupied" value="21"></div>
+            <div class="seat" value="31"></div>
+            <div class="seat occupied" value="41"></div>
+            <div class="seat" value="51"></div>
+            <div class="seat occupied" value="61"></div>
+            <div class="seat" value="71"></div>
+            <div class="seat occupied" value="81"></div>
+          </div>
+  
+          <div class="screen"></div>
+  
+          <div class="row">
+            <div class="seat" value="1"></div>
+            <div class="seat" value="11"></div>
+            <div class="seat" value="1211"></div>
+            <div class="seat" value="1221"></div>
+            <div class="seat" value="1312"></div>
+            <div class="seat" value="1412"></div>
+            <div class="seat" value="1512"></div>
+            <div class="seat" value="1612"></div>
+          </div>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
+  <p class="text">
+    You have booked <span id="count">0</span> for Co-Working Space
+  </p>
 
-    
+  <button id="confirm-button" class="button">Confirm Selection</button>
 
-    <p class="text">
-      You have booked <span id="count">0</span> for Co-Working Space
-    </p>
+  <script src="/js/booking.js"></script>
 
-    <button id="confirm-button">Confirm Selection</button>
+</body>
 
-    <script src="/js/booking.js"></script>
-  </body>
 </html>

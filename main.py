@@ -189,21 +189,13 @@ async def login(username: str , password: str):
 
 @app.get("/process_login/{username}")
 async def process_login(request: Request, username: str):
-    # read all json file form forum folder
-    data_dir = "data/forum"
-    forum_entries = []
-    for filename in os.listdir(data_dir):
-        forum_data_file = os.path.join(data_dir, filename)
-        with open(forum_data_file, "r") as file:
-            forum_entry = json.load(file)
-            forum_entries.append(forum_entry) 
-
+    forums_data = root1.forum_data
     # Check if the username and password are correct
     user_data = root.user_data
     for user in user_data:
         user_info = user_data[user]
         if username == user_info.username:
-            return templates.TemplateResponse("channel.html", {"request": request, "entries": forum_entries , "username" : username})
+            return templates.TemplateResponse("channel.html", {"request": request, "entries": forums_data , "username" : username})
     return RedirectResponse(url='/login')
 
 #______________________register______________________
@@ -308,8 +300,8 @@ async def check_topic(topic: str):
 
 
 
-@app.get('/channel')
-async def submit(request: Request):
+@app.get('/channel/{username}')
+async def submit(request: Request, username: str):
     # forum_entries = []
     # for filename in os.listdir(forum_data_dir):
     #     forum_data_file = os.path.join(forum_data_dir, filename)
@@ -331,14 +323,8 @@ async def submit(request: Request):
             "comment": forum_info.comment
         })
     
-    return templates.TemplateResponse("forum_entries.html", {"request": request, "entries": data})
+    return templates.TemplateResponse("forum_entries.html", {"request": request, "entries": data, "username": username})
 
-
-
-#______________________meeting______________________
-@app.get("/join_meeting", response_class=HTMLResponse)
-async def get_meeting_page(request: Request):
-    return FileResponse("page/meeting.html")
 
 
 if __name__ == "__main__":

@@ -302,7 +302,7 @@ async def check_topic(topic: str):
 
 
 
-@app.get('/channel/{username}')
+@app.get('/channel/{username}/{topic}')
 async def submit(request: Request, username: str):
     # forum_entries = []
     # for filename in os.listdir(forum_data_dir):

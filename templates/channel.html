@@ -23,7 +23,7 @@
             <div class="meeting-description">
                 <p>{{ entries[entry].content }}</p>
             </div>
-            <button class="join-button" onclick="location.href='/channel/{{ username }}';">Join Meeting</button>
+            <button class="join-button" onclick="location.href='/channel/{{ username }}/{{ entries[entry].topic }}';">Join Meeting</button>
         </div>
     {% endfor %}
     </div>

@@ -2,15 +2,19 @@
 <html>
 <head>
     <title>Channel Entries</title>
-    <link rel="stylesheet" type="text/css" href="/css/channel.css">
+    <link rel="stylesheet" type="text/css" href="/css/channel_style.css">
 
     <script>
         function CreateForum(username){
             location.href = '/create_forum/' + username;
         }
     </script>
+
 </head>
 <body>
+    <div class =head>
+        <h1>SE Forum</h1>
+    </div>
     <div class="container">
     {% for entry in entries %}
         <div class="meeting-block">
@@ -23,7 +27,7 @@
             <div class="meeting-description">
                 <p>{{ entries[entry].content }}</p>
             </div>
-            <button class="join-button" onclick="location.href='/channel/{{ username }}/{{ entries[entry].topic }}';">Join Meeting</button>
+            <button class="join-button" onclick="location.href='/channel/{{ username }}/{{ entries[entry].topic }}';">View Post</button>
         </div>
     {% endfor %}
     </div>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
 *{
     margin: 0;
     padding: 0;
@@ -7,16 +9,49 @@
 
 body{
     background-color: #171539;
-
+    font-family: 'Roboto', sans-serif;
 }
 
+
+
+h1 {
+    font-family: "Montserrat Medium";
+    max-width: 40ch;
+    text-align: center;
+    transform: scale(0.94);
+    animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+  }
+  @keyframes scale {
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  span {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+.head{
+    color: white;
+    text-align: center;
+    padding: 40px;
+    margin: auto;
+    font-size: 40px;
+}
 
 .container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    margin-left: 400px;
+    padding: auto;
+    align-items: center;
     flex-direction: row;
     color:white;
+    gap: 30px;
     
 }
 
@@ -35,17 +70,20 @@ body{
 
 .meeting-topic {
     max-width: 100%;
+    font-size: 25px; ;
     color: black;
 }
 
 .meeting-description {
-    margin-top: 10px;
+    margin-top: 5px;
     max-width: 100%;
     color: black;
 
 }
 
 .meeting-type {
+    font-size: 14px; ;
+
     margin-top: 10px;
     color: black;
 
@@ -68,10 +106,9 @@ body{
 
 .create-button {
     position: fixed;
-    bottom: 20px; /* Adjust this value as needed */
-    right: 20px; /* Adjust this value as needed */
-    z-index: 999; /* Ensures it's displayed above other content */
-    /* Add any other styling you want for the button here */
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 999;
 }
 
 /* Media query for screens with a max-width of 600px */

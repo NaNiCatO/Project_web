@@ -149,17 +149,18 @@ p.text span {
   padding: 10px;
   border-radius: 25px ;
   border: 0px;
-  background-color: white;
+  /* background-color: white; */
+  background-color: tomato;
+
 
 }
 
 
 .button:hover{
-  background-color: tomato;
-  padding: 12px;
-  border: 1px solid ;
-
-  color: white;
+  background-color: rgb(164, 155, 155);
+  padding: 10px;
+  /* border: 1px solid ;
+  color: white; */
   cursor: pointer;
 }
 

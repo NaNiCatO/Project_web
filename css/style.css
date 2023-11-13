@@ -46,8 +46,7 @@ header {
 }
 
 .navlist{
-    display: flex;
-    
+    display: flex;  
 }
 .logo{
     display: flex;

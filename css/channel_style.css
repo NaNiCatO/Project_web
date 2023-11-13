@@ -3,14 +3,41 @@
 *{
     margin: 0;
     padding: 0;
+    text-decoration: none;
 
 }
 
 
 body{
-    background-color: #171539;
+    /* background-color: #171539; */
+    background-color: #1a1c3e;
     font-family: 'Roboto', sans-serif;
 }
+
+
+header{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: red;
+    z-index: 900;
+    position: fixed;
+
+}
+
+footer {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background: linear-gradient(245.59deg, #1a1c3e 0%, #101428 28.53%, #000a0f 85.52%) !important;
+    z-index: 1000; 
+    bottom: 0;
+    height: 50px;
+    justify-content: flex-end;
+    padding: 10px 30px 10px 10px;
+    margin-right: 20px;
+}
+
 
 
 
@@ -36,7 +63,7 @@ h1 {
 .head{
     color: white;
     text-align: center;
-    padding: 40px;
+    padding: 100px 40px 40px 40px;
     margin: auto;
     font-size: 40px;
 }
@@ -91,7 +118,7 @@ h1 {
 
 .join-button {
     margin-top: 10px;
-    background-color: #007bff;
+    background-color: #1a7ce5;
     border-radius: 25px;
     color: #fff;
     border: none;
@@ -105,24 +132,90 @@ h1 {
 }
 
 .create-button {
-    position: fixed;
+    /* position: fixed; */
     bottom: 20px; 
     right: 20px; 
-    z-index: 999;
+    /* z-index: 999; */
+    border-radius: 25px;
+    width:80px;
+    margin-right: 20px;
+
+}
+
+.create-button:hover {
+    background-color: tomato;
+    border: #1e1e1e;
+    border: 4px solid #1e1e1e;
 }
 
 /* Media query for screens with a max-width of 600px */
-@media (max-width: 600px) {
+
+
+.func{
+    display: flex;
+    /* position: fixed !important; */
+    right: 0;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(245.59deg, #1a1c3e 0%, #101428 28.53%, #000a0f 85.52%) !important;
+    z-index: 999;
+
+
+}
+
+.navlist{
+    display: flex;  
+    list-style-type: none;
+    padding :33px 4%;
+
+
+}
+
+.navlist a{
+    display: flex;
+    color:white;
+    margin-left: 60px;
+    font-size: 15px;
+    font-weight:600;
+    border-bottom: 2px solid transparent;  
+    transition: all .55s ease;
+    flex-direction: row;
+    list-style-type: none;
+
+
+    
+}
+
+.navlist a:hover{
+    border-bottom: 2px solid tomato;
+    color: tomato !important;
+
+}
+
+
+
+@media (max-width: 1000px) {
+    .func{
+        justify-content: center;
+        align-items: center;
+    }
+
     .container {
         flex-direction: column;
+        margin-left: 0px;
+        padding: 40px;
+        width: auto;
+        height: auto;
+
+
+
     }
 
     .meeting-block {
-        max-width: 100%;
+        width: 100%;
+        max-width: 800px;
+        
     }
 
-    .create-button {
-        position: static;
-        margin-top: 20px;
-    }
+    
 }

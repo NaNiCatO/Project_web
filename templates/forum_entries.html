@@ -3,6 +3,49 @@
 <html>
 <head>
     <title>Forum Entries</title>
+    <script>
+        document.addEventListener("DOMContentLoaded",() =>{
+            var button = document.getElementById('submit');
+            button.addEventListener('click',function(e){
+                e.preventDefault();
+                Send_data();
+            });
+        })
+
+        async function Send_data(){
+            var comment = document.getElementById('comment').value;
+            var username = '{{ username }}';
+            var topic = '{{ entries.topic }}';
+
+            fetch('/add_comment/' + username ,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    comment: comment,
+                    topic: topic
+                })
+            })
+            .then(response => {
+                if (response.ok){
+                    response.json().then(data => {
+                        if (data['message'] == "Comment successfully"){
+                            alert(data['message']);
+                            location.reload();
+                            return;
+                        }
+                    })
+                }else{
+                    alert('An error occurred');
+                }
+            })
+            }
+                
+            
+        
+
+    </script>
 </head>
 <body>
     <div class="head">
@@ -17,11 +60,29 @@
                 <strong>Content:</strong> <p>{{ entries.content }}</p>
             </li>
         </ul>
+        
     </div>
+    <div class="container">
+        <form>
+            <input type="text" name="comment" placeholder="Comment" id="comment">
+            <input type="submit" name="submit" id="submit" value="Submit">
+        </form>
+    </div>
+    <div class="container2">
+        <h3>Comments</h3>
+        {%for comment in entries.comment%}
+        <ul>
+            <li>
+                <p><strong>Username:</strong>  {{ comment.username }}</p>
+                <p><strong>Comment:</strong>  {{ comment.comment }}</p>
+            </li>
+        </ul>
+        {%endfor%}
+    </div>
+        
     <div class="back-position">
         <!-- <button href="" class="back">Back to Form</button> -->
-        <button class="back" onclick="location.href='/channel';">Back to form</button>
-
+        <button class="back" onclick="location.href='/process_login/{{username}}';">Back to form</button>
     </div>
 </body>
 </html>

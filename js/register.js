@@ -21,6 +21,7 @@ async function checkvalidity(){
 }
 
 
+
 function applyScrollReveal(selector, options) {
     const sr = new ScrollReveal(options);
     sr.reveal(selector);

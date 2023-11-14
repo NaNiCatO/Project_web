@@ -30,6 +30,17 @@ body{
     border: 1px solid tomato;
 }
 
+.container2 {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-bottom: 10px;
+    background-color: rgb(232, 229, 229);
+    border-radius: 25px;
+    border: 1px solid tomato;
+}
 
 ul{
     padding: 10px;

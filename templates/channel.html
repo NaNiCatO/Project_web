@@ -1,18 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Channel Entries</title>
-    <link rel="stylesheet" type="text/css" href="/css/channel.css">
+    <link rel="stylesheet" type="text/css" href="/css/channel_style.css">
 
     <script>
-        function CreateForum(username){
+        function CreateForum(username) {
             location.href = '/create_forum/' + username;
         }
     </script>
+
+
+
 </head>
+
+
 <body>
+
+    <header>
+        <div class="func">
+            <ul class="navlist">
+                <li><a href="/program">SE Forum</a></li>
+                <li><a href="#">Booking Room</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <div class="head">
+        <h1>SE Forum</h1>
+    </div>
     <div class="container">
-    {% for entry in entries %}
+        {% for entry in entries %}
         <div class="meeting-block">
             <div class="meeting-type">
                 <p>{{ entries[entry].type }}</p>
@@ -23,10 +43,18 @@
             <div class="meeting-description">
                 <p>{{ entries[entry].content }}</p>
             </div>
-            <button class="join-button" onclick="location.href='/channel/{{ username }}/{{ entries[entry].topic }}';">Go to Forum</button>
+            <button class="join-button"
+                onclick="location.href='/channel/{{ username }}/{{ entries[entry].topic }}';">View Post</button>
         </div>
-    {% endfor %}
+        {% endfor %}
     </div>
-    <button id="createButton" class="create-button" onclick="CreateForum('{{ username }}');">Create</button>
+
+    <footer>
+        <button id="createButton" class="create-button" onclick="CreateForum('{{ username }}');">Create</button>
+    </footer>
+
+
+
 </body>
+
 </html>

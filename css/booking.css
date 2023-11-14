@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
 
 * {
   box-sizing: border-box;
@@ -14,8 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-family: 'Lato', 'sans-serif';
-
+  font-family: "Lato", "sans-serif";
 }
 
 .CoSeat-container {
@@ -34,15 +33,16 @@ body {
   appearance: none;
 }
 
-.container,.container2,.container3,.container4 {
+.container,
+.container2,
+.container3,
+.container4 {
   perspective: 1000px;
   margin-bottom: 30px;
-
 }
-.head{
+.head {
   padding-bottom: 20px;
   margin-top: -50px;
-
 }
 .seat {
   background-color: #444451;
@@ -52,8 +52,6 @@ body {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-
-
 
 .seat.selected {
   background-color: orange;
@@ -115,8 +113,6 @@ body {
   box-shadow: 0 3px 10px rgba(255, 255, 255, 0.75);
 }
 
-
-
 p.text {
   margin: 5px 0;
 }
@@ -125,8 +121,7 @@ p.text span {
   color: tomato;
 }
 
-
-.fixed-container{
+.fixed-container {
   display: flex;
   background-color: #171539;
   flex-direction: row;
@@ -136,42 +131,30 @@ p.text span {
   position: relative;
 }
 
-.container{
-  
-} 
+.container {
+}
 
-.space{
+.space {
   display: flex;
   flex-direction: column;
 }
 
-.button{
+.button {
   padding: 10px;
-  border-radius: 25px ;
+  border-radius: 25px;
   border: 0px;
-  /* background-color: white; */
   background-color: tomato;
-
-
 }
 
-
-.button:hover{
+.button:hover {
   background-color: rgb(164, 155, 155);
   padding: 10px;
-  /* border: 1px solid ;
-  color: white; */
   cursor: pointer;
 }
 
-p{
+p {
   padding: 10px;
 }
-
-
-/* .bg{
-  background-color: red;
-} */
 
 .Room {
   list-style: none;
@@ -179,33 +162,28 @@ p{
   margin-top: -100px;
   padding: 30px 0px 0px 20px;
   /* background-color: #fff; */
-
 }
 
 .small1 {
   margin-top: -20px;
   padding: 10px 15px 10px 15px;
   cursor: pointer;
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
 .small1:hover {
-  color: orange; /* Change the color on hover as needed */
+  color: orange;
 }
-
 
 .Room li {
   margin-top: -20px;
   padding: 10px 15px 10px 15px;
   cursor: pointer;
-  background-color:rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
-
-
 .Room li:hover {
-  color: orange; /* Change the color on hover as needed */
+  color: orange;
 }
-

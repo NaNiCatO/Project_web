@@ -153,23 +153,5 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", handleScroll);
 });
 
-
-
-// --------still not working-------- //
-
-// Function to handle fixed height scrolling
-// function fixedHeightScroll(event) {
-//     const deltaY = event.deltaY;
-//     const linkHeight = 20; // Set the height of your <a> elements in pixels
-
-//     if (deltaY !== 0) {
-//         const linksToScroll = Math.floor(Math.abs(deltaY) / linkHeight);
-//         const scrollAmount = deltaY > 0 ? linksToScroll * linkHeight : -linksToScroll * linkHeight;
-//         window.scrollBy(0, scrollAmount);
-//     }
-// }
-
-
-
 window.addEventListener('wheel', fixedHeightScroll);
 

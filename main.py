@@ -93,8 +93,9 @@ root = connection.root
 #         file.close() 
 
 # # On server start load all user data from json to ZODB
-# @app.on_event("startup")
-# async def startup_event():
+@app.on_event("startup")
+async def startup_event():
+    transaction.begin()
 #     # Load all user data from json to ZODB
 #     # with open("data/user/all_user.json", 'r') as file:
 #     #     all_user = json.load(file)

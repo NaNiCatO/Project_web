@@ -6,7 +6,6 @@ const RoomBarEL = document.getElementById("RoomBarEL");
 
 const count = document.getElementById("count");
 const CoSeatSelect = document.getElementById("CoSeat");
-const confirmButton = document.getElementById("confirm-button");
 const seats = document.querySelectorAll(".row .seat:not(.occupied)");
 
 showRoom(1);
@@ -32,7 +31,7 @@ function showRoom(roomNumber) {
   updateSelectedCount();
 }
 
-confirmButton.addEventListener("click", () => {
+function save_booking(username) {
   // Mark selected seats as occupied
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
   selectedSeats.forEach((seat) => {
@@ -40,14 +39,60 @@ confirmButton.addEventListener("click", () => {
     seat.classList.add("occupied");
   });
 
+  const selectedSeatsIndexes = [...selectedSeats].map(
+    (seat) => [...seats].indexOf(seat)
+  );
+
   const selectedSeatsCount = selectedSeats.length;
 
   // Display a confirmation message using alert
-  alert(
-    "You have successfully booked the seat for " + selectedSeatsCount + " seats"
-  );
+  if (selectedSeatsCount > 0) {
+    alert(
+      "You have successfully booked the seat for " + selectedSeatsCount + " seats"
+    );
+    // Check what div is currently visible
+    let currentRoom = 1;
+    for (let i = 1; i <= 4; i++) {
+      const roomEl = document.getElementById("container" + i);
+      if (roomEl.style.display !== "none") {
+        currentRoom = i;
+        break;
+      }
+    }
+    alert(selectedSeatsIndexes);
+
+    fetch('/save_booking/' + username, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        roomnumber: currentRoom,
+        selected_seat: selectedSeatsIndexes,
+      })
+    })
+    .then(response => {
+      if (response.ok){
+        response.json().then(data => {
+              if (data['message'] == "Booking successfully"){
+                  alert("Book successfully");
+                  location.reload();
+                  return;
+              }
+          })
+      }else{
+          alert('An error occurred');
+      }
+  })
+  }
+  else {
+    alert("Please select a seat to book");
+  }
+
   updateSelectedCount();
-});
+}
+
+
 
 function setCoSeatData(CoSeatIndex) {
   localStorage.setItem("selectedCoSeatIndex", CoSeatIndex);

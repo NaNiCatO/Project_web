@@ -8,6 +8,11 @@ connection = db.open()
 root = connection.root
 root.user_data = BTrees.OOBTree.BTree()
 root.forum_data = BTrees.OOBTree.BTree()
+root.booking_data = BTrees.OOBTree.BTree()
+root.booking_data[1] = []
+root.booking_data[2] = []
+root.booking_data[3] = []
+root.booking_data[4] = []
 
 
 # forum_data = ZODB.FileStorage.FileStorage('forum_data.fs')

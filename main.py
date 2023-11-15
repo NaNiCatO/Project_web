@@ -27,14 +27,15 @@ db = ZODB.DB(mystorage)
 connection = db.open()
 root = connection.root
 
-# On server start load all user data from json to ZODB
+# On server start
 # @app.on_event("startup")
 # async def startup_event():
 
 
-# # On server shutdown save all user data from ZODB to json
+# # On server shutdown
 @app.on_event("shutdown")
 async def shutdown_event():
+    # save to database
     transaction.commit()
     connection.close()
 
@@ -99,10 +100,8 @@ async def register(username: str , password: str , email: str):
             return JSONResponse(content={"message": "Email is already taken"})
          
     # put info in database
-    # connection = db.open()
     root.user_data[username] = User(username , password , email) 
-    # transaction.commit() 
-    # connection.close()
+
     return JSONResponse(content={"message": "Register successfully"}) 
 
 @app.get("/register/all_data")
@@ -160,10 +159,7 @@ async def submit(request: Request, username: str):
                     return JSONResponse(content={"message": "Topic is already taken"})
             
             # save to forum_data ZODB
-            # connection = db.open()
             root.forum_data[topic] = Forum(username , type , topic , content)
-            # transaction.commit()
-            # connection.close()
 
             return JSONResponse(content={"message": "Create forum successfully"})
     return RedirectResponse(url='/login')
@@ -182,18 +178,7 @@ async def check_topic(topic: str):
 
 @app.get('/channel/{username}/{topic}')
 async def submit(request: Request, username: str, topic: str):
-    # forum_entries = []
-    # for filename in os.listdir(forum_data_dir):
-    #     forum_data_file = os.path.join(forum_data_dir, filename)
-    #     with open(forum_data_file, "r") as file:
-    #         forum_entry = json.load(file)
-    #         forum_entries.append(forum_entry)
-
-    #get all forum data
-    # connection = db.open()
-    # root = connection.root
     forum_data = root.forum_data
-    # for forum in forum_data:
     forum_info = forum_data[topic]
     data= {
         "creator": forum_info.creator,
@@ -204,7 +189,6 @@ async def submit(request: Request, username: str, topic: str):
         "likeuser": forum_info.likeuser,
         "comment": forum_info.comment
     }
-    # connection.close()
     
     return templates.TemplateResponse("forum_entries.html", {"request": request, "entries": data, "username": username})
 
@@ -223,16 +207,57 @@ async def submit(request: Request, username: str):
 
   
             # save to forum_data ZODB
-            # connection = db.open()    
             forum_info = root.forum_data[topic] 
             forum_info.add_comment(username , comment) 
             root.forum_data[topic] = forum_info
-            # root.forum_data[topic].add_comment(username, comment)
-            # print(root.forum_data[topic].comment) 
-            # transaction.commit() 
-            # connection.close()
+
 
             return JSONResponse(content={"message": "Comment successfully"})
+    return RedirectResponse(url='/login')
+
+#______________________Save Booking Spots______________________
+@app.post('/save_booking/{username}')
+async def submit(request: Request, username: str):
+    # check if the user is in the database
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username:
+            data = await request.json()
+            roomnumber = data['roomnumber']
+            selected_seat = data['selected_seat']
+            print(selected_seat)
+            print(roomnumber)
+
+            # save into ZODB
+            for i in selected_seat:
+                root.booking_data[roomnumber].append(i)
+            root._p_changed = True
+
+
+            return JSONResponse(content={"message": "Booking successfully"})
+    return RedirectResponse(url='/login')
+
+#______________________Get Booking HTML______________________
+@app.get('/booking_room/{username}')
+async def booking_room(request: Request, username: str):
+    # check if the user is in the database
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username:
+
+            # send the data from ZODB to HTML
+            booking_data = root.booking_data
+            data = []
+            for room in booking_data:
+                room_info = booking_data[room]
+                data.append({
+                    "room": room,
+                    "seat": room_info
+                })
+            return templates.TemplateResponse("booking_room.html", {"request": request, "entries": data, "username": username})
+
     return RedirectResponse(url='/login')
 
 

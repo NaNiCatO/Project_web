@@ -9,6 +9,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="/css/booking.css" />
   <title>Co-Working Space Booking</title>
+  <script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+      var confirm = document.getElementById("confirm_button");
+      var username = '{{ username }}';
+      confirm.addEventListener("click", function() {
+        save_booking(username);
+      });
+    });
+  </script>
 </head>
 
 <body>
@@ -50,7 +60,7 @@
 
       <div class="container Room" id="container1">
         <div class="container">
-
+          
         
           <div class="head">
             <h4>Co-Working Space Zone 1</h1>
@@ -194,7 +204,7 @@
     You have booked <span id="count">0</span> for Co-Working Space
   </p>
 
-  <button id="confirm-button" class="button">Confirm Selection</button>
+  <button id="confirm_button" class="button">Confirm Selection</button>
 
   <script src="/js/booking.js"></script>
 

@@ -18,6 +18,27 @@
             </li>
         </ul>
     </div>
+<<<<<<< Updated upstream
+=======
+    <div class="container-submit">
+        <form>
+            <textarea type="text" name="comment" placeholder="Comment" id="comment"></textarea>
+            <input type="submit" name="submit" id="submit" value="Submit">
+        </form>
+    </div>
+    <div class="container2">
+        <h3>Comments</h3>
+        {%for comment in entries.comment%}
+        <ul>
+            <li>
+                <p><strong>Username:</strong>  {{ comment.username }}</p>
+                <p><strong>Comment:</strong>  {{ comment.comment }}</p>
+            </li>
+        </ul>
+        {%endfor%}
+    </div>
+        
+>>>>>>> Stashed changes
     <div class="back-position">
         <!-- <button href="" class="back">Back to Form</button> -->
         <button class="back" onclick="location.href='/channel';">Back to form</button>

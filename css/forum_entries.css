@@ -20,7 +20,10 @@ body{
 
 .container {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   padding: auto;
   display: flex;
   flex-wrap: wrap;
@@ -44,6 +47,11 @@ textarea {
   resize: none;
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 input[type=submit] {
   background-color: grey;
   background-color: #f4511e;

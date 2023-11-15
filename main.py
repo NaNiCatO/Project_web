@@ -226,13 +226,12 @@ async def submit(request: Request, username: str):
             data = await request.json()
             roomnumber = data['roomnumber']
             selected_seat = data['selected_seat']
-            print(selected_seat)
-            print(roomnumber)
+
 
             # save into ZODB
             for i in selected_seat:
                 root.booking_data[roomnumber].append(i)
-            root._p_changed = True
+            root.booking_data._p_changed = True
 
 
             return JSONResponse(content={"message": "Booking successfully"})
@@ -256,34 +255,23 @@ async def booking_room(request: Request, username: str):
                     "room": room,
                     "seat": room_info
                 })
-            return templates.TemplateResponse("booking_room.html", {"request": request, "entries": data, "username": username})
+
+            return templates.TemplateResponse("booking.html", {"request": request, "entries": data, "username": username})
 
     return RedirectResponse(url='/login')
 
-
+#______________________reset Booking Data______________________
+@app.get('/reset_booking')
+async def reset_booking(request: Request):
+    # reset the booking data
+    root.booking_data[1] = []
+    root.booking_data[2] = []
+    root.booking_data[3] = []
+    root.booking_data[4] = []
+    root._p_changed = True
+    return RedirectResponse(url='/login')
 
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
-
-# #______________________ZODB Check______________________
-# @app.get("/zodb")
-# async def zodb():
-#     #get all forum data
-    # connection = db.open()
-#     forum_data = root.forum_data
-#     data = []
-#     for forum in forum_data:
-#         forum_info = forum_data[forum]
-#         data.append({
-#             "creator": forum_info.creator,
-#             "type": forum_info.type,
-#             "topic": forum_info.topic,
-#             "content": forum_info.content,
-#             "like": forum_info.like,
-#             "likeuser": forum_info.likeuser,
-#             "comment": forum_info.comment
-#         })
-#     return JSONResponse(content={"data": data})
 

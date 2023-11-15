@@ -52,153 +52,42 @@
   </ul>
 </div>
 
-  
-
-  <!-- Zone 1: Seat Selection -->
-  <div class="fixed-container">
-    <div class="space">
-
-      <div class="container Room" id="container1">
-        <div class="container">
-          
+<div class="fixed-container">
+  <div class="space">
+    {% for entry in entries %}
+    <div class="container Room" id="container{{entry.room}}">
+      <div class="container{{entry.room}}">
         
-          <div class="head">
-            <h4>Co-Working Space Zone 1</h1>
-          </div>
-          <div class="row">
-            <div class="seat" value="11"></div>
-            <div class="seat" value="21"></div>
-            <div class="seat" value="31"></div>
-            <div class="seat" value="41"></div>
-            <div class="seat" value="51"></div>
-            <div class="seat" value="61"></div>
-            <div class="seat" value="71"></div>
-            <div class="seat" value="81"></div>
-          </div>
-  
-          <div class="screen"></div>
-  
-          <div class="row">
-            <div class="seat" value="91"></div>
-            <div class="seat" value="101"></div>
-            <div class="seat" value="111"></div>
-            <div class="seat" value="121"></div>
-            <div class="seat" value="131"></div>
-            <div class="seat" value="141"></div>
-            <div class="seat" value="151"></div>
-            <div class="seat" value="161"></div>
-          </div>
+      
+        <div class="head">
+          <h4>Co-Working Space Zone {{entry.room}}</h1>
+        </div>
+        <div class="row">
+          {% for i in range(8) %}
+            {% if i + ((entry.room - 1)*16) in entry.seat %}
+            <div class="seat occupied"></div>
+            {% else %}
+            <div class="seat"></div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="screen"></div>
+
+        <div class="row">
+          {% for i in range(8) %}
+            {% if i+8 + ((entry.room - 1)*16) in entry.seat %}
+            <div class="seat occupied"></div>
+            {% else %}
+            <div class="seat"></div>
+            {% endif %}
+          {% endfor %}
         </div>
       </div>
-
-      <!-- Zone 2: Seat Selection -->
-      <div class="container Room" id="container2">
-        <!-- Content for Room 2 -->
-        <div class="container2">
-
-        
-          <div class="head">
-            <h4>Co-Working Space Zone 2</h1>
-          </div>
-          <div class="row">
-            <div class="seat" value="11"></div>
-            <div class="seat" value="21"></div>
-            <div class="seat" value="31"></div>
-            <div class="seat" value="41"></div>
-            <div class="seat" value="51"></div>
-            <div class="seat" value="61"></div>
-            <div class="seat" value="71"></div>
-            <div class="seat" value="81"></div>
-          </div>
-  
-          <div class="screen"></div>
-  
-          <div class="row">
-            <div class="seat" value="91"></div>
-            <div class="seat" value="101"></div>
-            <div class="seat" value="111"></div>
-            <div class="seat" value="121"></div>
-            <div class="seat" value="131"></div>
-            <div class="seat" value="141"></div>
-            <div class="seat" value="151"></div>
-            <div class="seat" value="161"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Zone 3: Seat Selection -->
-      <div class="container Room" id="container3">
-        <!-- Content for Room 3 -->
-        <div class="container3">
-
-        
-          <div class="head">
-            <h4>Co-Working Space Zone 3</h1>
-          </div>
-          <div class="row">
-            <div class="seat" value="11"></div>
-            <div class="seat" value="21"></div>
-            <div class="seat" value="31"></div>
-            <div class="seat" value="41"></div>
-            <div class="seat" value="51"></div>
-            <div class="seat" value="61"></div>
-            <div class="seat" value="71"></div>
-            <div class="seat" value="81"></div>
-          </div>
-  
-          <div class="screen"></div>
-  
-          <div class="row">
-            <div class="seat" value="1"></div>
-            <div class="seat" value="11"></div>
-            <div class="seat" value="1211"></div>
-            <div class="seat" value="1221"></div>
-            <div class="seat" value="1312"></div>
-            <div class="seat" value="1412"></div>
-            <div class="seat" value="1512"></div>
-            <div class="seat" value="1612"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Zone 4: Seat Selection -->
-      <div class="container Room" id="container4">
-        <!-- Content for Room 4 -->
-        <div class="container4">
-
-        
-          <div class="head">
-            <h4>Co-Working Space Zone 4</h1>
-          </div>
-          <div class="row">
-            <div class="seat" value="11"></div>
-            <div class="seat" value="21"></div>
-            <div class="seat" value="31"></div>
-            <div class="seat" value="41"></div>
-            <div class="seat" value="51"></div>
-            <div class="seat" value="61"></div>
-            <div class="seat" value="71"></div>
-            <div class="seat" value="81"></div>
-          </div>
-  
-          <div class="screen"></div>
-  
-          <div class="row">
-            <div class="seat" value="1"></div>
-            <div class="seat" value="11"></div>
-            <div class="seat" value="1211"></div>
-            <div class="seat" value="1221"></div>
-            <div class="seat" value="1312"></div>
-            <div class="seat" value="1412"></div>
-            <div class="seat" value="1512"></div>
-            <div class="seat" value="1612"></div>
-          </div>
-          </div>
-        </div>
-      </div>
-
     </div>
+    {% endfor %}
   </div>
+</div>
 
   <p class="text">
     You have booked <span id="count">0</span> for Co-Working Space

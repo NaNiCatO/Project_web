@@ -163,6 +163,11 @@ h1 {
 
 }
 
+.spacer{
+    width: 100%;
+    height: 70px;
+}
+
 .navlist{
     display: flex;  
     list-style-type: none;

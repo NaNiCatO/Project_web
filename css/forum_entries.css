@@ -24,6 +24,51 @@ body {
   border: 1px solid tomato;
 }
 
+textarea {
+  width: 100%;
+  height: 100px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+  resize: none;
+}
+
+input[type=submit] {
+  background-color: grey;
+  background-color: #f4511e;
+  opacity: 0.8;
+
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  float: left;
+}
+
+input[type=submit]:hover {
+  background-color: #f4511e;
+  opacity: 1.5;
+}
+
+.container-submit{
+  /* padding: auto; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row;
+  padding:20px 20px 10px 20px;
+  background-color: rgb(232, 229, 229);
+  border-radius: 25px;
+  border: 1px solid tomato;
+  margin: 20px 0 20px 0;
+}
+
+
 .container2 {
     padding: 10px;
     display: flex;

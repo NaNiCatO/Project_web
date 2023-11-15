@@ -17,6 +17,7 @@ class Forum(persistent.Persistent):
     
     def add_comment(self , username , comment):
         self.comment.append(Comment(username , comment))
+        self._p_changed = True
 
     def add_like(self , username):
         self.like += 1

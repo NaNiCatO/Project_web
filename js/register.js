@@ -21,6 +21,10 @@ async function checkvalidity(){
 }
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    const loginButton = document.getElementById("registerButton");
+    loginButton.addEventListener("click", checkvalidity);
+});
 
 function applyScrollReveal(selector, options) {
     const sr = new ScrollReveal(options);

@@ -26,105 +26,10 @@ mystorage = ZODB.FileStorage.FileStorage('mydata.fs')
 db = ZODB.DB(mystorage)
 connection = db.open()
 root = connection.root
-# root.user_data = BTrees.OOBTree.BTree()
 
-# forum_data = ZODB.FileStorage.FileStorage('forum_data.fs')
-# db = ZODB.DB(forum_data)
-# connection = db.open()
-# root = connection.root
-# root.forum_data = BTrees.OOBTree.BTree()
-
-#______________________Classes______________________
-# import persistent
-# class User(persistent.Persistent):
-#     def __init__(self , username , password , email):
-#         self.username = username
-#         self.password = password
-#         self.email = email
-
-# class Forum(persistent.Persistent):
-#     def __init__(self , creator , type , topic , content):
-#         self.creator = creator
-#         self.type = type
-#         self.topic = topic
-#         self.content = content
-#         self.like = 0
-#         self.likeuser = []
-#         self.comment = []
-    
-#     def add_comment(self , username , comment):
-#         self.comment.append(Comment(username , comment))
-
-#     def add_like(self , username):
-#         self.like += 1
-#         self.likeuser.append(username)
-
-# class Comment(persistent.Persistent):
-#     def __init__(self , username , comment):
-#         self.username = username
-#         self.comment = comment
-#         self.like = 0
-#         self.likeuser = []
-    
-#     def add_like(self , username):
-#         self.like += 1
-#         self.likeuser.append(username)
-
-#______________________Server Start and Shutdown______________________
-
-# # check if the all_user file exist
-# user_data_folder = "data/user"
-# user_data_dir = "data/user/all_user.json"
-# if not os.path.exists(user_data_folder):
-#     os.makedirs(user_data_folder)
-# if not os.path.exists(user_data_dir):
-#     with open(user_data_dir, 'w') as file:
-#         json.dump({}, file)
-#         file.close()
-
-# # check if the all_forum file exist
-# forum_data_folder = "data/forum"
-# forum_data_dir = "data/forum/all_forum.json"
-# if not os.path.exists(forum_data_folder):
-#     os.makedirs(forum_data_folder)
-# if not os.path.exists(forum_data_dir):
-#     with open(forum_data_dir, 'w') as file:
-#         json.dump({}, file)
-#         file.close() 
-
-# # On server start load all user data from json to ZODB
-@app.on_event("startup")
-async def startup_event():
-    transaction.begin()
-#     # Load all user data from json to ZODB
-#     # with open("data/user/all_user.json", 'r') as file:
-#     #     all_user = json.load(file)
-#     #     connection = db.open()
-#     #     root.user_data = BTrees.OOBTree.BTree()
-#     #     for user in all_user:
-#     #         user_info = all_user[user]
-#     #         root.user_data[user] = User(user_info['username'] , user_info['password'] , user_info['email'])
-#     #     transaction.commit()
-        # connection.close()
-#     #     file.close()
-    
-#     # Load all forum data from json to ZODB
-#     data_dir = "data/forum/all_forum.json"
-#     with open(data_dir, 'r') as file:
-#         all_forum = json.load(file)
-#         connection = db.open()
-#         root.forum_data = BTrees.OOBTree.BTree()
-#         for forum in all_forum:
-#             forum_info = all_forum[forum]
-#             root.forum_data[forum] = Forum(forum_info['creator'] , forum_info['type'] , forum_info['topic'] , forum_info['content'])
-#         transaction.commit()
-        # connection.close()
-#         file.close()
-
-
-    
-
-        
+# On server start load all user data from json to ZODB
+# @app.on_event("startup")
+# async def startup_event():
 
 
 # # On server shutdown save all user data from ZODB to json
@@ -132,57 +37,6 @@ async def startup_event():
 async def shutdown_event():
     transaction.commit()
     connection.close()
-#     # Save all user data from ZODB to json
-#     with open("data/user/all_user.json", 'w') as file:
-#         all_user = {}
-#         connection = db.open()
-#         for user in root.user_data:
-#             user_info = root.user_data[user]
-#             all_user[user] = {
-#                 "username": user_info.username,
-#                 "password": user_info.password,
-#                 "email": user_info.email
-#             }
-#         transaction.commit()
-        # connection.close()
-#         json.dump(all_user, file)
-#         file.close()
-    
-#     # Save all forum data from ZODB to json
-#     data_dir = "data/forum/all_forum.json"
-#     with open(data_dir, 'w') as file:
-#         all_forum = {}
-#         connection = db.open()
-#         for forum in root.forum_data:
-#             forum_info = root.forum_data[forum]
-#             all_forum[forum] = {
-#                 "creator": forum_info.creator,
-#                 "type": forum_info.type,
-#                 "topic": forum_info.topic,
-#                 "content": forum_info.content,
-#                 "like": forum_info.like,
-#                 "likeuser": forum_info.likeuser,
-#                 "comment": forum_info.comment
-#             }
-#         transaction.commit()
-        # connection.close()
-#         json.dump(all_forum, file)
-#         file.close()
-
-forum_data = root.forum_data
-for forum in forum_data:
-    forum_info = forum_data[forum]
-    data= {
-        "creator": forum_info.creator,
-        "type": forum_info.type,
-        "topic": forum_info.topic,
-        "content": forum_info.content,
-        "like": forum_info.like,
-        "likeuser": forum_info.likeuser,
-        "comment": forum_info.comment
-    }
-    print(data)
-
 
 #______________________home______________________
 @app.get("/", response_class=HTMLResponse)
@@ -243,13 +97,13 @@ async def register(username: str , password: str , email: str):
             return  JSONResponse(content={"message": "Username is already taken"})
         if email == user_info.email:    
             return JSONResponse(content={"message": "Email is already taken"})
-        
+         
     # put info in database
     # connection = db.open()
-    root.user_data[username] = User(username , password , email)
-    # transaction.commit()
+    root.user_data[username] = User(username , password , email) 
+    # transaction.commit() 
     # connection.close()
-    return JSONResponse(content={"message": "Register successfully"})
+    return JSONResponse(content={"message": "Register successfully"}) 
 
 @app.get("/register/all_data")
 async def get_all_data():
@@ -339,7 +193,6 @@ async def submit(request: Request, username: str, topic: str):
     # connection = db.open()
     # root = connection.root
     forum_data = root.forum_data
-    print(root.forum_data[topic].comment) 
     # for forum in forum_data:
     forum_info = forum_data[topic]
     data= {
@@ -368,16 +221,16 @@ async def submit(request: Request, username: str):
             topic = data['topic']
             comment = data['comment']
 
-
+  
             # save to forum_data ZODB
             # connection = db.open()    
-            # forum_info = root.forum_data[topic] 
-            # forum_info.add_comment(username , comment) 
-            # root.forum_data[topic] = forum_info
-            root.forum_data[topic].comment.append(Comment(username , comment))
-            # print(root.forum_data[topic].comment)
-            # transaction.commit()
-            # connection.close() 
+            forum_info = root.forum_data[topic] 
+            forum_info.add_comment(username , comment) 
+            root.forum_data[topic] = forum_info
+            # root.forum_data[topic].add_comment(username, comment)
+            # print(root.forum_data[topic].comment) 
+            # transaction.commit() 
+            # connection.close()
 
             return JSONResponse(content={"message": "Comment successfully"})
     return RedirectResponse(url='/login')

@@ -14,6 +14,7 @@
     <div class="container">
     {% for entry in entries %}
         <div class="meeting-block">
+<<<<<<< Updated upstream
             <div class="meeting-type">
                 <p>{{ entry.type }}</p>
             </div>
@@ -24,6 +25,25 @@
                 <p>{{ entry.content }}</p>
             </div>
             <button class="join-button" onclick="location.href='/join_meeting';">Join Meeting</button>
+=======
+
+                <div class="meeting-type">
+                    <p>{{ entries[entry].type }}</p>
+                </div>
+                <div class="meeting-topic">
+                    <h3>{{ entries[entry].topic }}</h3>
+                </div>
+
+                <div class="meeting-description">
+                    <p>{{ entries[entry].content }}</p>
+                </div>
+                <div class = "right-part">
+
+                <button class="join-button"
+                    onclick="location.href='/channel/{{ username }}/{{ entries[entry].topic }}';">View Post</button>
+                </div>
+
+>>>>>>> Stashed changes
         </div>
     {% endfor %}
     </div>

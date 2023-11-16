@@ -1,0 +1,238 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+
+}
+
+
+body{
+    /* background-color: #171539; */
+    background-color: #1a1c3e;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+header{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: red;
+    z-index: 900;
+    position: fixed;
+
+}
+
+footer {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    background: linear-gradient(245.59deg, #1a1c3e 0%, #101428 28.53%, #000a0f 85.52%) !important;
+    z-index: 1000; 
+    bottom: 0;
+    height: 50px;
+    justify-content: flex-end;
+    padding: 10px 30px 10px 10px;
+    margin-right: 20px;
+}
+
+
+
+
+h1 {
+    font-family: "Montserrat Medium";
+    max-width: 40ch;
+    text-align: center;
+    transform: scale(0.94);
+    animation: scale 3s forwards cubic-bezier(0.5, 1, 0.89, 1);
+  }
+  @keyframes scale {
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  span {
+    display: inline-block;
+    opacity: 0;
+    filter: blur(4px);
+  }
+
+.head{
+    color: white;
+    text-align: center;
+    padding: 100px 40px 40px 40px;
+    margin: auto;
+    font-size: 40px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    margin-left: 400px;
+    padding: auto;
+    align-items: center;
+    flex-direction: row;
+    color:white;
+    gap: 30px;
+    
+}
+
+.meeting-block {
+    width: 33%; /* 3 blocks in a row with margins */
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 25px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: azure;
+    box-shadow: 0 0 10px 0 #ccc;
+}
+
+.meeting-topic {
+    max-width: 100%;
+    font-size: 25px; ;
+    color: black;
+    padding-bottom: 5px;
+}
+
+.meeting-description {
+    margin-top: 5px;
+    max-width: 100%;
+    color: black;
+
+}
+
+.meeting-type {
+    font-size: 14px; ;
+    margin-top: 10px;
+    color: black;
+    padding-bottom: 5px; ;
+
+}
+
+.join-button {
+    margin-top: 10px;
+    background-color: #1a7ce5;
+    border-radius: 25px;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    text-align: center;
+
+}
+
+.right-part{
+    padding-left:70%;
+}
+
+
+.join-button:hover {
+    background-color: #024fa1;
+}
+
+.create-button {
+    /* position: fixed; */
+    bottom: 20px; 
+    right: 20px; 
+    /* z-index: 999; */
+    border-radius: 25px;
+    width:80px;
+    margin-right: 20px;
+
+}
+
+.create-button:hover {
+    background-color: tomato;
+    border: #1e1e1e;
+    border: 4px solid #1e1e1e;
+}
+
+/* Media query for screens with a max-width of 600px */
+
+
+.func{
+    display: flex;
+    /* position: fixed !important; */
+    right: 0;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(245.59deg, #1a1c3e 0%, #101428 28.53%, #000a0f 85.52%) !important;
+    z-index: 999;
+
+
+}
+
+.spacer{
+    width: 100%;
+    height: 70px;
+}
+
+.navlist{
+    display: flex;  
+    list-style-type: none;
+    padding :33px 4%;
+
+
+}
+
+.navlist a{
+    display: flex;
+    color:white;
+    margin-left: 60px;
+    font-size: 15px;
+    font-weight:600;
+    border-bottom: 2px solid transparent;  
+    transition: all .55s ease;
+    flex-direction: row;
+    list-style-type: none;
+
+
+    
+}
+
+.navlist a:hover{
+    border-bottom: 2px solid tomato;
+    color: tomato !important;
+
+}
+
+
+
+
+
+@media (max-width: 1000px) {
+    .func{
+        justify-content: center;
+        align-items: center;
+    }
+
+    .container {
+        flex-direction: column;
+        margin-left: 0px;
+        padding: 40px;
+        width: auto;
+        height: auto;
+
+
+
+    }
+
+    .meeting-block {
+        width: 100%;
+        max-width: 800px;
+        
+    }
+
+    
+}

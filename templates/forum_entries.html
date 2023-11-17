@@ -42,7 +42,41 @@
             })
             }
                 
-            
+        async function checklike(topic,comment,commentowner,username){
+            var likebutton = document.getElementById('like');
+
+            fetch('/add_like_comment/' + username ,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    topic: topic,
+                    comment: comment,
+                    commentowner: commentowner
+                })
+            })
+            .then(response => {
+                if (response.ok){
+                    response.json().then(data => {
+                        if (data['message'] == "Like successfully"){
+                            alert(data['message']);
+                            location.reload();
+                            return;
+                        }else if (data['message'] == "Unlike successfully"){
+                            alert(data['message']);
+                            location.reload();
+                            return;
+                        }else{
+                           alert(data['message']);
+                           location.href = '/login';
+                        }
+                    })
+                }else{
+                    alert('An error occurred');
+                }
+            })
+        }
         
 
     </script>
@@ -75,8 +109,14 @@
             <li>
                 <p><strong>Username:</strong>  {{ comment.username }}</p>
                 <p><strong>Comment:</strong>  {{ comment.comment }}</p>
+                <p><strong>Total Likes:</strong>  {{comment.like}} likes</p>
             </li>
         </ul>
+            {% if username in comment.likeuser %}
+                <button class = "unlike-button" id="like" onclick="checklike('{{ entries.topic }}','{{comment.comment}}','{{ comment.username }}','{{username}}')">unlike</button>
+            {% else %}
+                <button  class = "like-button" id="like" onclick="checklike('{{ entries.topic }}','{{comment.comment}}','{{ comment.username }}','{{username}}')">like</button>
+            {% endif %}
         {%endfor%}
     </div>
         

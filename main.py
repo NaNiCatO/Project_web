@@ -232,6 +232,35 @@ async def submit(request: Request, username: str):
             return JSONResponse(content={"message": "Comment successfully"})
     return RedirectResponse(url='/login')
 
+#______________________Add like to Comment______________________
+@app.post('/add_like_comment/{username}')
+async def submit(request: Request, username: str):
+    #Check if the username exist or not
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username:
+            data = await request.json()
+            topic = data['topic']
+            comment = data['comment']
+            commentowner = data['commentowner']
+
+            # save to forum_data ZODB
+            forum_info = root.forum_data[topic] 
+            for i in forum_info.comment:
+                if i.username == commentowner and i.comment == comment:
+                    if username not in i.likeuser:
+                        i.add_like(username)
+                        root.forum_data[topic] = forum_info
+                        return JSONResponse(content={"message": "Like successfully"})
+                    else:
+                        i.unlike(username)
+                        root.forum_data[topic] = forum_info
+                        return JSONResponse(content={"message": "Unlike successfully"})
+            root.forum_data[topic] = forum_info
+            return JSONResponse(content={"message": "Comment Not found"})
+    return JSONResponse(content={"message": "No user found"})
+
 #______________________Save Booking Spots______________________
 @app.post('/save_booking/{username}')
 async def submit(request: Request, username: str):

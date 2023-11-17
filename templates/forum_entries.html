@@ -83,6 +83,11 @@
     <div class="back-position">
         <!-- <button href="" class="back">Back to Form</button> -->
         <button class="back" onclick="location.href='/process_login/{{username}}';">Back to form</button>
+
+        {% if username == entries.creator %}
+        <button class="back" onclick="location.href='/delete_forum/{{username}}/{{ entries.topic }}';">Delete</button>
+        {% endif %}
     </div>
+    <script src="/js/forum_entries.js"></script>
 </body>
 </html>

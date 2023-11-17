@@ -163,7 +163,24 @@ async def submit(request: Request, username: str):
 
             return JSONResponse(content={"message": "Create forum successfully"})
     return RedirectResponse(url='/login')
-        
+
+#______________________delete forum______________________
+@app.get('/delete_forum/{username}/{topic}')
+async def submit(request: Request, username: str, topic: str):
+    #Check if the username exist or not
+    user_data = root.user_data
+    for user in user_data:
+        user_info = user_data[user]
+        if username == user_info.username:
+            #Check if the topic is already exist or not
+            forum_data = root.forum_data
+            for forum in forum_data:
+                forum_info = forum_data[forum]
+                if topic == forum_info.topic:
+                    del root.forum_data[topic]
+    return RedirectResponse(url='/process_login/'+username)
+
+#______________________edit forum______________________
 @app.post("/check_topic/{topic}")
 async def check_topic(topic: str):
     #Check if the topic is already exist or not

@@ -106,3 +106,8 @@ p {
 .back:hover {
   background-color: tomato;
 }
+
+
+.like:hover {
+  cursor: pointer;
+}

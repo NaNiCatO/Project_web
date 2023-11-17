@@ -69,6 +69,7 @@
                             return;
                         }else{
                            alert(data['message']);
+                           location.href = '/login';
                         }
                     })
                 }else{
@@ -108,12 +109,13 @@
             <li>
                 <p><strong>Username:</strong>  {{ comment.username }}</p>
                 <p><strong>Comment:</strong>  {{ comment.comment }}</p>
+                <p><strong>Total Likes:</strong>  {{comment.like}} likes</p>
             </li>
         </ul>
             {% if username in comment.likeuser %}
-                <button id="like" onclick="checklike('{{ entries.topic }}','{{comment.comment}}','{{ comment.username }}','{{username}}')">like</button>
+                <button class = "unlike-button" id="like" onclick="checklike('{{ entries.topic }}','{{comment.comment}}','{{ comment.username }}','{{username}}')">unlike</button>
             {% else %}
-                <button id="like" onclick="checklike('{{ entries.topic }}','{{comment.comment}}','{{ comment.username }}','{{username}}')">unlike</button>
+                <button  class = "like-button" id="like" onclick="checklike('{{ entries.topic }}','{{comment.comment}}','{{ comment.username }}','{{username}}')">like</button>
             {% endif %}
         {%endfor%}
     </div>

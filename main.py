@@ -241,10 +241,8 @@ async def submit(request: Request, username: str):
                         root.forum_data[topic] = forum_info
                         return JSONResponse(content={"message": "Unlike successfully"})
             root.forum_data[topic] = forum_info
-
-
             return JSONResponse(content={"message": "Comment Not found"})
-    return RedirectResponse(url='/login')
+    return JSONResponse(content={"message": "No user found"})
 
 #______________________Save Booking Spots______________________
 @app.post('/save_booking/{username}')

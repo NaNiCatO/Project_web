@@ -30,6 +30,15 @@ class Comment(persistent.Persistent):
         self.like = 0
         self.likeuser = []
     
-    def add_like(self , username):
-        self.like += 1
-        self.likeuser.append(username)
+    def add_like(self , likeusername):
+        if likeusername not in self.likeuser:
+            self.like += 1
+            self.likeuser.append(likeusername)
+            self._p_changed = True
+    
+    def unlike(self , likeusername):
+        if likeusername in self.likeuser:
+            self.like -= 1
+            self.likeuser.remove(likeusername)
+            self._p_changed = True
+        
